@@ -36,8 +36,8 @@ jobs:
       - name: Install dependencies
         run: pnpm --version && pnpm install --frozen-lockfile
 
-      - name: Check Biome
-        run: pnpm biome check
+      - name: Run ESLint
+        run: pnpm eslint --fix ./src
 
       - name: Test
         run: pnpm test
