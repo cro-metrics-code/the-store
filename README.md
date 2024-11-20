@@ -100,7 +100,7 @@ To add a product:
 <a name="metadata"></a>
 <summary>Product Metadata</summary>
 
-Additionally, Your Next Store uses product metadata to provide more context information about the products. You can specify the following metadata fields:
+Product metadata is used to provide more context information about the products. You can specify the following metadata fields:
 
 | Key        | Required | Valid Values                                          | Description                                                    |
 | :--------- | :------: | :---------------------------------------------------- | :------------------------------------------------------------- |
@@ -116,7 +116,7 @@ Additionally, Your Next Store uses product metadata to provide more context info
 <details>
 <summary>Configuring Product Variants</summary>
 
-To create a product with variants, you must add multiple products to Stripe with the same `slug` metadata field. YNS uses the `variant` metadata field to distinguish between different variants of the same product. For example, if you have a T-shirt in multiple sizes, you can create three products with the `slug` of `t-shirt` and `variant` values of `small`, `medium`, and `large`.
+To create a product with variants, you must add multiple products to Stripe with the same `slug` metadata field. The `variant` metadata field to distinguish between different variants of the same product. For example, if you have a T-shirt in multiple sizes, you can create three products with the `slug` of `t-shirt` and `variant` values of `small`, `medium`, and `large`.
 
 Variants are displayed on the product page. Variants can have different prices, descriptions, and images. It's important to note that the `category` should be the same for all variants of the same product for the best browsing experience.
 
