@@ -13,6 +13,8 @@ To checkout using the default test card, use the following details:
 >
 > The main repo exists outside of Cro Metrics's org, but within the "cro-metrics-code" GitHub user (which is owned by Cro Metrics). That means you need to use the `cro-metrics-code` GitHub account to commit to the repo.
 
+> However, managing two different GitHub accounts locally is a hassle, so the best solution is to **log into GitHub as `cro-metrics-code` and add yourself as a collaborator on the repo.**
+
 ## Current Use
 
 This project is currently being used to evaluate Amplitude's experimentation products and other uses in the future may require "un-Amplitude-ing" the project.
