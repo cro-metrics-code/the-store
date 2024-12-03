@@ -12,7 +12,7 @@ To checkout using the default test card, use the following details:
 > The easiest way to deploy this project is on Vercel, however, Vercel **does not** allow deployments on their free "Hobby Tier" plan within an org.
 >
 > The main repo exists outside of Cro Metrics's org, but within the "cro-metrics-code" GitHub user (which is owned by Cro Metrics). That means you need to use the `cro-metrics-code` GitHub account to commit to the repo.
-
+>
 > However, managing two different GitHub accounts locally is a hassle, so the best solution is to **log into GitHub as `cro-metrics-code` and add yourself as a collaborator on the repo.**
 
 ## Current Use
