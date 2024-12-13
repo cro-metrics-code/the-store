@@ -71,7 +71,7 @@ Stripe works in two different modes:
 > [!CAUTION]
 > Only use the Test Mode to ensure Stripe will never charge real money.
 
-![Stripe Test Mode](/assets/images/stripe-test-mode.png)
+![Stripe Test Mode](/images/stripe-test-mode.png)
 
 For more detailed info on Test Mode, please refer to the [Stripe documentation](https://docs.stripe.com/testing).
 

@@ -1,8 +1,8 @@
 import MDX from '@next/mdx';
 import type { NextConfig } from 'next/types';
 
-import './src/env/server';
-import './src/env/client';
+import './env/server';
+import './env/client';
 
 const withMDX = MDX();
 
