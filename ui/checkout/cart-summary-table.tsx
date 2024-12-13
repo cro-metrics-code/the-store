@@ -86,7 +86,7 @@ export const CartSummaryTable = ({ cart }: { cart: Commerce.Cart }) => {
                 </TableCell>
                 <TableCell className="font-medium">
                   <PrefetchLink
-                    className="transition-colors hover:text-muted-foreground"
+                    className="hover:text-muted-foreground transition-colors"
                     href={`/product/${line.product.metadata.slug}`}
                   >
                     {formatProductName(
@@ -146,7 +146,7 @@ export const CartSummaryTable = ({ cart }: { cart: Commerce.Cart }) => {
             <TableRow key={tax.taxAmount} className="font-normal">
               <TableCell className="hidden w-24 sm:table-cell" />
               <TableCell colSpan={3} className="text-right">
-                {tax.taxType.toLocaleUpperCase()} {tax.taxPercentage}%
+                {String(tax.taxType).toLocaleUpperCase()} {tax.taxPercentage}%
               </TableCell>
               <TableCell className="text-right">
                 <CartAmountWithSpinner

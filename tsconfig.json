@@ -36,7 +36,7 @@
     "i18n.d.ts",
     "next-fix.d.ts",
     ".next/types/**/*.ts",
-    "postcss.config.cjs"
+    "postcss.config.mjs"
   ],
   "exclude": ["node_modules", "src/script/**/*.ts"]
 }
