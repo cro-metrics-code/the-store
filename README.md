@@ -17,7 +17,9 @@ To checkout using the default test card, use the following details:
 
 ## Branch Use
 
-This branch is used for INSERT_USE_CASE_HERE
+This branch is used for the ABTasty PoC using our ABTasty sandbox account.
+
+If you don't have it already, you will need to request an invite to our ABTasty sandbox account.
 
 ## Using the Project
 
