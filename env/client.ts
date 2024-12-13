@@ -7,7 +7,6 @@ export const env = createEnv({
     NEXT_PUBLIC_URL: z.string().url(),
     NEXT_PUBLIC_DEV_URL: z.string().url(),
     NEXT_PUBLIC_NEWSLETTER_ENDPOINT: z.string().optional(),
-    NEXT_PUBLIC_AMPLITUDE_API_KEY: z.string(),
   },
   runtimeEnv: {
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:
@@ -22,6 +21,5 @@ export const env = createEnv({
       }`,
     NEXT_PUBLIC_NEWSLETTER_ENDPOINT:
       process.env.NEXT_PUBLIC_NEWSLETTER_ENDPOINT,
-    NEXT_PUBLIC_AMPLITUDE_API_KEY: process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY,
   },
 });

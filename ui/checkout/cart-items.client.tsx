@@ -1,5 +1,4 @@
 import { setQuantity } from '@/actions/cart-actions';
-// import { useAmplitudeContext } from '@/hooks/useAmplitudeContext';
 import { formatMoney } from '@/lib/utils';
 import { Button } from '@/ui/shadcn/button';
 import { useElements } from '@stripe/react-stripe-js';
@@ -24,7 +23,6 @@ export const CartItemQuantity = ({
   }) => void;
 }) => {
   const { pending } = useFormStatus();
-  // const { trackEvent } = useAmplitudeContext();
   const stateRef = useRef<{
     timer: ReturnType<typeof setTimeout> | null;
     promise: PromiseWithResolvers<void>;
@@ -37,10 +35,6 @@ export const CartItemQuantity = ({
 
   const formAction = async (action: 'INCREASE' | 'DECREASE') => {
     onChange({ productId, action });
-    // trackEvent('cart_item_quantity_change', {
-    //   productId,
-    //   action,
-    // });
 
     const doWork = async () => {
       try {
@@ -72,7 +66,7 @@ export const CartItemQuantity = ({
     <span
       className={clsx(
         'flex flex-row items-center',
-        isPending ? 'cursor-wait text-foreground/50' : 'text-foreground',
+        isPending ? 'text-foreground/50 cursor-wait' : 'text-foreground',
       )}
     >
       <Button
@@ -83,7 +77,7 @@ export const CartItemQuantity = ({
         className="group aspect-square p-0"
         formAction={() => formAction('DECREASE')}
       >
-        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-neutral-100 pb-0.5 font-bold leading-none text-black transition-colors group-hover:bg-neutral-500 group-hover:text-white">
+        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-neutral-100 pb-0.5 leading-none font-bold text-black transition-colors group-hover:bg-neutral-500 group-hover:text-white">
           –
         </span>
       </Button>
@@ -97,7 +91,7 @@ export const CartItemQuantity = ({
         className="group aspect-square p-0"
         formAction={() => formAction('INCREASE')}
       >
-        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-neutral-100 pb-0.5 font-bold leading-none text-black transition-colors group-hover:bg-neutral-500 group-hover:text-white">
+        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-neutral-100 pb-0.5 leading-none font-bold text-black transition-colors group-hover:bg-neutral-500 group-hover:text-white">
           +
         </span>
       </Button>
@@ -127,7 +121,7 @@ export const CartItemLineTotal = ({
     <span
       className={clsx(
         'whitespace-nowrap tabular-nums',
-        isPending ? 'cursor-wait text-foreground/50' : 'text-foreground',
+        isPending ? 'text-foreground/50 cursor-wait' : 'text-foreground',
       )}
     >
       {formatMoney({
@@ -151,11 +145,11 @@ export const CartAmountWithSpinner = ({
     <span
       className={clsx(
         'relative tabular-nums',
-        pending ? 'cursor-wait text-foreground/50' : 'text-foreground',
+        pending ? 'text-foreground/50 cursor-wait' : 'text-foreground',
       )}
     >
       {pending && (
-        <Loader2 className="absolute -left-[.85rem] top-[.1rem] inline-block size-3 animate-spin text-foreground" />
+        <Loader2 className="text-foreground absolute top-[.1rem] -left-[.85rem] inline-block size-3 animate-spin" />
       )}
       {formatMoney({
         amount: total,

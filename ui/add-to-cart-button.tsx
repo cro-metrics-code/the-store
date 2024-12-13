@@ -1,6 +1,5 @@
 'use client';
 
-// import { useAmplitudeContext } from '@/hooks/useAmplitudeContext';
 import { cn } from '@/lib/utils';
 import { Button } from '@/ui/shadcn/button';
 import { Loader2Icon } from 'lucide-react';
@@ -19,7 +18,6 @@ export const AddToCartButton = ({
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const isDisabled = disabled || pending;
-  // const { trackEvent } = useAmplitudeContext();
 
   return (
     <Button
@@ -32,9 +30,6 @@ export const AddToCartButton = ({
           e.preventDefault();
           return;
         }
-        // trackEvent('add_to_cart', {
-        //   productId,
-        // });
         startTransition(() => router.push(`/cart-overlay?add=${productId}`));
       }}
       aria-disabled={isDisabled}

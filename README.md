@@ -15,15 +15,23 @@ To checkout using the default test card, use the following details:
 >
 > However, managing two different GitHub accounts locally is a hassle, so the best solution is to **log into GitHub as `cro-metrics-code` and add yourself as a collaborator on the repo.**
 
-## Current Use
+## Using the Project
 
-This project is currently being used to evaluate Amplitude's experimentation products and other uses in the future may require "un-Amplitude-ing" the project.
+> [!IMPORTANT] > **DO NOT** add any platform snippets to the `main` branch. See the [Branching Strategy](#branching-strategy) section for more information on how to add platform snippets.
 
-- `pnpm remove @amplitude/analytics-browser`
-- Remove all [PageVisitTracker](/lib/analytics/PageVisitTracker.tsx) references
-- Remove all [useAmplitudeContext](/hooks/useAmplitudeContext.tsx) references
-- Remove all [AmplitudeContextProvider](/context/AmplitudeContext.tsx) references
-- Remove all [AmplitudeContext](/context/AmplitudeContext.tsx) references
+## Branching Strategy
+
+### Feature Changes
+
+Feature changes should be done in a new branch create from `main` and merged into `main` via a pull request. Feature changes **should not** include any platform snippets.
+
+### Working with Platform Snippets
+
+If you want to add a platform snippet for a PoC or testing purposes:
+
+1. Create a new branch from the `main` branch
+2. Add whatever platform snippets you want to test.
+3. Publish your branch to GitHub which will trigger a Vercel deployment and a preview URL which you can use for your snippet testing/PoC.
 
 ## Project setup
 
