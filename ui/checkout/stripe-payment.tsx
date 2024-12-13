@@ -1,7 +1,7 @@
 'use client';
 
 import { clearCartCookieAction } from '@/actions/cart-actions';
-import { useDebouncedValue } from '@/hooks/useDebouncedValue';
+import { useDebouncedValue } from '@/hooks/use-debounced-value';
 import {
   saveBillingAddressAction,
   saveShippingRateAction,
@@ -326,7 +326,7 @@ const PaymentForm = ({
               tabIndex={sameAsShipping ? -1 : undefined}
               className={'grid gap-6 rounded-lg border p-4'}
             >
-              <legend className="-ml-1 whitespace-nowrap px-1 text-sm font-medium">
+              <legend className="-ml-1 px-1 text-sm font-medium whitespace-nowrap">
                 Billing address
               </legend>
               <BillingAddressSection

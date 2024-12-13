@@ -17,7 +17,6 @@ export const JsonLd = <T extends Thing>({
 }) => (
   <script
     type="application/ld+json"
-    // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
   />
 );

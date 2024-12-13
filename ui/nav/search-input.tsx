@@ -1,6 +1,6 @@
 'use client';
 
-import { useDebouncedValue } from '@/hooks/useDebouncedValue';
+import { useDebouncedValue } from '@/hooks/use-debounced-value';
 import { cn } from '@/lib/utils';
 import { Input } from '@/ui/shadcn/input';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';

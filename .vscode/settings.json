@@ -15,7 +15,7 @@
   },
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.biome": "always"
+    "source.fixAll.eslint": "always"
   },
   "editor.quickSuggestions": {
     "strings": true

@@ -4,7 +4,6 @@ import { PrefetchLink } from '@/ui/prefetch-link';
 import { Button } from '@/ui/shadcn/button';
 import { useEffect } from 'react';
 
-// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 export default function Error({
   error,
 }: {
@@ -17,7 +16,7 @@ export default function Error({
 
   return (
     <main className="mx-auto max-w-xl flex-auto text-center">
-      <h1 className="mb-8 mt-8 text-4xl font-black">
+      <h1 className="mt-8 mb-8 text-4xl font-black">
         Oops, something went wrong!
       </h1>
       <Button variant="link" asChild>

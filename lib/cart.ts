@@ -1,32 +1,33 @@
 import { safeJsonParse } from '@/lib/utils';
-import { type UnsafeUnwrappedCookies, cookies } from 'next/headers';
+import { cookies } from 'next/headers';
 
 export const CART_COOKIE = 'yns_cart';
 
 export type CartCookieJson = { id: string; linesCount: number };
 
-export function setCartCookieJson(cartCookieJson: CartCookieJson): void {
+export async function setCartCookieJson(cartCookieJson: CartCookieJson) {
   try {
-    (cookies() as unknown as UnsafeUnwrappedCookies).set(
-      CART_COOKIE,
-      JSON.stringify(cartCookieJson),
-    );
+    const cookieStore = await cookies();
+    cookieStore.set(CART_COOKIE, JSON.stringify(cartCookieJson));
   } catch (error) {
     console.error('Failed to set cart cookie', error);
   }
 }
 
-export function clearCartCookie(): void {
-  (cookies() as unknown as UnsafeUnwrappedCookies).set(CART_COOKIE, '', {
-    maxAge: 0,
-  });
+export async function clearCartCookie() {
+  try {
+    const cookieStore = await cookies();
+    cookieStore.set(CART_COOKIE, '', {
+      maxAge: 0,
+    });
+  } catch (error) {
+    console.error('Failed to clear cart cookie', error);
+  }
 }
 
-export async function getCartCookieJson(): Promise<null | CartCookieJson> {
-  const cookiesValue = await cookies();
-  const cartCookieJson = safeJsonParse(
-    (cookiesValue as unknown as UnsafeUnwrappedCookies).get(CART_COOKIE)?.value,
-  );
+export async function getCartCookieJson() {
+  const cookieStore = await cookies();
+  const cartCookieJson = safeJsonParse(cookieStore.get(CART_COOKIE)?.value);
 
   if (
     !cartCookieJson ||
