@@ -33,7 +33,7 @@ Feature changes should be done in a new branch create from `main` and merged int
 
 If you want to add a platform snippet for a PoC or testing purposes:
 
-1. Create a new branch from the `main` branch
+1. Create a new branch from the `main` branch and name it something descriptive such as the name of the platform you are testing.
 2. Add whatever platform snippets you want to test.
 3. Update the [Branch Use](#branch-use) section with the new branch's use case and any instructions that may be helpful for future ENG who may need to work with the branch.
 4. Commit your changes and publish your branch to GitHub which will trigger a Vercel deployment and a preview URL which you can use for your snippet testing/PoC.
