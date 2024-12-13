@@ -15,6 +15,10 @@ To checkout using the default test card, use the following details:
 >
 > However, managing two different GitHub accounts locally is a hassle, so the best solution is to **log into GitHub as `cro-metrics-code` and add yourself as a collaborator on the repo.**
 
+## Branch Use
+
+This branch is used for INSERT_USE_CASE_HERE
+
 ## Using the Project
 
 > [!IMPORTANT] > **DO NOT** add any platform snippets to the `main` branch. See the [Branching Strategy](#branching-strategy) section for more information on how to add platform snippets.
@@ -31,7 +35,8 @@ If you want to add a platform snippet for a PoC or testing purposes:
 
 1. Create a new branch from the `main` branch
 2. Add whatever platform snippets you want to test.
-3. Publish your branch to GitHub which will trigger a Vercel deployment and a preview URL which you can use for your snippet testing/PoC.
+3. Update the [Branch Use](#branch-use) section with the new branch's use case and any instructions that may be helpful for future ENG who may need to work with the branch.
+4. Commit your changes and publish your branch to GitHub which will trigger a Vercel deployment and a preview URL which you can use for your snippet testing/PoC.
 
 ## Project setup
 
