@@ -15,7 +15,7 @@
   },
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.biome": "always"
+    "source.fixAll.eslint": "always"
   },
   "editor.quickSuggestions": {
     "strings": true
@@ -29,5 +29,12 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cursor.general.enableShadowWorkspace": true
+  "cursor.general.enableShadowWorkspace": true,
+  "markdownlint.config": {
+    "default": true,
+    "line-length": false,
+    "no-inline-html": {
+      "allowed_elements": ["details", "summary", "a"]
+    }
+  }
 }
