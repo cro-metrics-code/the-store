@@ -1,4 +1,4 @@
-import { ShoppingCartIcon } from '@/ui/assets/ShoppingCartIcon';
+import { ShoppingCartIcon } from '@/ui/assets/shopping-cart-icon';
 import { PrefetchLink } from '@/ui/prefetch-link';
 
 export const CartEmpty = async () => (
@@ -11,7 +11,7 @@ export const CartEmpty = async () => (
       </p>
     </div>
     <PrefetchLink
-      className="inline-flex h-10 items-center justify-center rounded-md bg-neutral-900 px-6 text-sm font-medium text-neutral-50 shadow transition-colors hover:bg-neutral-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50"
+      className="inline-flex h-10 items-center justify-center rounded-md bg-neutral-900 px-6 text-sm font-medium text-neutral-50 shadow transition-colors hover:bg-neutral-900/90 focus-visible:ring-1 focus-visible:ring-neutral-950 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
       href="/"
     >
       Continue shopping

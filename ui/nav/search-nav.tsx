@@ -1,7 +1,4 @@
-import {
-  SearchInput,
-  SearchInputPlaceholder,
-} from '@/ui/nav/search-input.client';
+import { SearchInput, SearchInputPlaceholder } from '@/ui/nav/search-input';
 import { SearchIcon } from 'lucide-react';
 import { Suspense } from 'react';
 
@@ -13,6 +10,6 @@ export const SearchNav = async () => (
     >
       <SearchInput placeholder="Search for products..." />
     </Suspense>
-    <SearchIcon className="block h-5 w-5 max-smb:z-10 max-smb:cursor-pointer xxs:-ml-7" />
+    <SearchIcon className="max-smb:z-10 max-smb:cursor-pointer xxs:-ml-7 block h-5 w-5" />
   </label>
 );

@@ -1,6 +1,6 @@
 'use client';
 
-import { useBreakpoint } from '@/hooks/useBreakpoints';
+import { useBreakpoint } from '@/hooks/use-breakpoints';
 import { PrefetchLink } from '@/ui/prefetch-link';
 import { X } from 'lucide-react';
 import { useState } from 'react';
