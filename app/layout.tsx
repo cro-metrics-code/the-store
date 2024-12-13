@@ -4,6 +4,7 @@ import { Toaster } from '@/ui/shadcn/sonner';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import type { ReactNode } from 'react';
 
 export const generateMetadata = async (): Promise<Metadata> => ({
@@ -27,6 +28,10 @@ export default async function RootLayout({
         <Toaster position="top-center" offset={10} />
         <SpeedInsights />
         <Analytics />
+        <Script
+          src="https://try.abtasty.com/de992a16d6c9353eca657be611b9eb31.js"
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );
