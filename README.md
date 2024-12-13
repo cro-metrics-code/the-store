@@ -20,10 +20,10 @@ To checkout using the default test card, use the following details:
 This project is currently being used to evaluate Amplitude's experimentation products and other uses in the future may require "un-Amplitude-ing" the project.
 
 - `pnpm remove @amplitude/analytics-browser`
-- Remove all [PageVisitTracker](src/lib/analytics/PageVisitTracker.tsx) references
-- Remove all [useAmplitudeContext](src/hooks/useAmplitudeContext.tsx) references
-- Remove all [AmplitudeContextProvider](src/context/AmplitudeContext.tsx) references
-- Remove all [AmplitudeContext](src/context/AmplitudeContext.tsx) references
+- Remove all [PageVisitTracker](/lib/analytics/PageVisitTracker.tsx) references
+- Remove all [useAmplitudeContext](/hooks/useAmplitudeContext.tsx) references
+- Remove all [AmplitudeContextProvider](/context/AmplitudeContext.tsx) references
+- Remove all [AmplitudeContext](/context/AmplitudeContext.tsx) references
 
 ## Project setup
 

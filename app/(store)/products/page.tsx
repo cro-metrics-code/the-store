@@ -1,4 +1,4 @@
-import { env } from '../../../env/client';
+import { env } from '@/env/client';
 import { ProductList } from '@/ui/products/product-list';
 import * as Commerce from 'commerce-kit';
 import type { Metadata } from 'next/types';

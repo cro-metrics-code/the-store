@@ -1,4 +1,4 @@
-import { getCartFromCookiesAction } from '../../../../actions/cart-actions';
+import { getCartFromCookiesAction } from '@/actions/cart-actions';
 import { formatMoney, formatProductName } from '@/lib/utils';
 import { PrefetchLink } from '@/ui/prefetch-link';
 import { Button } from '@/ui/shadcn/button';

@@ -1,4 +1,4 @@
-import { env } from '../../../../env/client';
+import { env } from '@/env/client';
 
 import { cn, deslugify, formatMoney, formatProductName } from '@/lib/utils';
 

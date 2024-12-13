@@ -1,6 +1,6 @@
 'use server';
 
-import { getCartFromCookiesAction } from '../../../actions/cart-actions';
+import { getCartFromCookiesAction } from '@/actions/cart-actions';
 import type { AddressSchema } from '@/ui/checkout/checkout-form-schema';
 import * as Commerce from 'commerce-kit';
 

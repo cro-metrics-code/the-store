@@ -1,6 +1,6 @@
 'use server';
 
-import { env } from '../../../env/client';
+import { env } from '@/env/client';
 
 export async function signForNewsletter(formData: FormData) {
   const email = formData.get('email');

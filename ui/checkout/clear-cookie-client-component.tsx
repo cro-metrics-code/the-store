@@ -1,6 +1,6 @@
 'use client';
 
-import { clearCartCookieAction } from '../../../actions/cart-actions';
+import { clearCartCookieAction } from '@/actions/cart-actions';
 import { useRouter } from 'next/navigation';
 import { startTransition, useEffect } from 'react';
 

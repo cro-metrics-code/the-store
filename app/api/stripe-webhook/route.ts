@@ -1,4 +1,4 @@
-import { env } from '../../../env/server';
+import { env } from '@/env/server';
 import { unpackPromise } from '@/lib/utils';
 import * as Commerce from 'commerce-kit';
 import { cartMetadataSchema } from 'commerce-kit/internal';

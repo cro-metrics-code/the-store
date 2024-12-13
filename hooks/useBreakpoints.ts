@@ -6,7 +6,7 @@ import defaultScreens from 'tailwindcss/defaultTheme';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import type { KeyValuePair } from 'tailwindcss/types/config.js';
 
-import tailwindConfig from '../../tailwind.config';
+import tailwindConfig from '@/tailwind.config';
 
 const fullConfig = resolveConfig(tailwindConfig);
 

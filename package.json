@@ -9,8 +9,8 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "pnpm eslint --fix ./src",
-    "format": "pnpm prettier --write ./src",
+    "lint": "pnpm eslint --fix",
+    "format": "pnpm prettier --write --ignore-unknown",
     "check-types": "tsc --skipLibCheck --noEmit",
     "prepare": "husky"
   },
@@ -49,6 +49,7 @@
     "react": "19.0.0-rc-ed15d500-20241110",
     "react-dom": "19.0.0-rc-ed15d500-20241110",
     "schema-dts": "1.1.2",
+    "server-only": "0.0.1",
     "sonner": "1.7.0",
     "stripe": "17.3.1",
     "tailwind-merge": "2.5.4",

@@ -1,6 +1,6 @@
 'use client';
 
-import { env } from '../../../env/client';
+import { env } from '@/env/client';
 import { invariant } from '@/lib/invariant';
 import { Elements } from '@stripe/react-stripe-js';
 import { type StripeElementsOptions, loadStripe } from '@stripe/stripe-js';

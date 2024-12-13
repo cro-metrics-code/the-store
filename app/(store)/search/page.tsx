@@ -1,4 +1,4 @@
-import { env } from '../../../env/client';
+import { env } from '@/env/client';
 import { Search } from '@/lib/api';
 import { ProductList } from '@/ui/products/product-list';
 import { ProductNotFound } from '@/ui/products/product-not-found';

@@ -1,4 +1,4 @@
-import { env } from '../env/client';
+import { env } from '@/env/client';
 import * as Commerce from 'commerce-kit';
 import type { MetadataRoute } from 'next';
 

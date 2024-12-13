@@ -1,4 +1,4 @@
-import { getCartFromCookiesAction } from '../../../actions/cart-actions';
+import { getCartFromCookiesAction } from '@/actions/cart-actions';
 import { CheckoutCard } from '@/ui/checkout/checkout-card';
 import type { Metadata } from 'next/types';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { addToCartAction } from '../../../../actions/cart-actions';
+import { addToCartAction } from '@/actions/cart-actions';
 import { useRouter } from 'next/navigation';
 import { startTransition, useEffect, useRef } from 'react';
 

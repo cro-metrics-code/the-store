@@ -1,4 +1,4 @@
-import { setQuantity } from '../../../actions/cart-actions';
+import { setQuantity } from '@/actions/cart-actions';
 // import { useAmplitudeContext } from '@/hooks/useAmplitudeContext';
 import { formatMoney } from '@/lib/utils';
 import { Button } from '@/ui/shadcn/button';

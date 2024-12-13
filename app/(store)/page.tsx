@@ -1,4 +1,4 @@
-import { env } from '../../env/client';
+import { env } from '@/env/client';
 import AccessoriesImage from '@/images/accessories.jpg';
 import ApparelImage from '@/images/apparel.jpg';
 import { CategoryBox } from '@/ui/category-box';

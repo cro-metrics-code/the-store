@@ -1,4 +1,4 @@
-import { getCartFromCookiesAction } from '../../../actions/cart-actions';
+import { getCartFromCookiesAction } from '@/actions/cart-actions';
 import * as Commerce from 'commerce-kit';
 import type { ReactNode } from 'react';
 
