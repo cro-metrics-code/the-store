@@ -1,22 +1,20 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
 import defaultScreens from 'tailwindcss/defaultTheme';
-import resolveConfig from 'tailwindcss/resolveConfig';
-import type { KeyValuePair } from 'tailwindcss/types/config.js';
 
-import tailwindConfig from '@/tailwind.config';
+type Screens = typeof defaultScreens.screens;
 
-const fullConfig = resolveConfig(tailwindConfig);
-
-type Screens = KeyValuePair<string, string>;
-
-const screens: Screens = (fullConfig.theme?.screens ||
-  defaultScreens) as Screens;
+const screens: Screens = {
+  sm: '640px',
+  md: '768px',
+  lg: '1024px',
+  xl: '1280px',
+  '2xl': '1536px',
+};
 
 export const useBreakpoint = (
-  breakpoint: keyof typeof defaultScreens,
+  breakpoint: keyof typeof screens,
   defaultValue = false,
 ) => {
   const [match, setMatch] = useState(defaultValue);
