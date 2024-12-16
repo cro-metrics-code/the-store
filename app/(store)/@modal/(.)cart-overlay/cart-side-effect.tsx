@@ -25,8 +25,7 @@ export const CartModalAddSideEffect = ({
       await addToCartAction(formData);
       pendingRef.current = false;
 
-      // use `document.location.pathname` because `usePathname` returns stale value
-      // while the router is transitioning
+      // use `document.location.pathname` because `usePathname` returns stale value while the router is transitioning
       if (document.location.pathname === '/cart-overlay') {
         // if user is still on the cart page, remove the query params and rerender
         router.replace('/cart-overlay', { scroll: false });
