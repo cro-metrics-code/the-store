@@ -356,3 +356,7 @@ export interface ABTasty {
   TealiumCallback(data: object): void;
   WeboramaCallback(data: object): void;
 }
+
+export interface ABTastySend {
+  send: ABTastyPush;
+}

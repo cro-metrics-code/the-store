@@ -28,7 +28,7 @@ export const SuccessSideEffects = ({
     }
 
     function sendTransaction() {
-      window.abtasty!.send('transaction', {
+      window.abtasty.send('transaction', {
         icn: count, //Number of items
         ta: 'Purchase',
         tc: 'USD',

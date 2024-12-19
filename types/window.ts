@@ -1,18 +1,16 @@
 import type {
-  ABTastyPush,
   ABTastyClickTrackingFn,
   ABTastyStartTestFn,
   ABTastyReloadFn,
   UnlockABTastyFn,
   ABTasty,
+  ABTastySend,
 } from '@/types/abtasty';
 
 declare global {
   interface Window {
     ABTasty: ABTasty;
-    abtasty?: {
-      send: ABTastyPush;
-    };
+    abtasty: ABTastySend;
     ABTastyClickTracking: ABTastyClickTrackingFn;
     ABTastyReload: ABTastyReloadFn;
     ABTastyStartTest: ABTastyStartTestFn;
