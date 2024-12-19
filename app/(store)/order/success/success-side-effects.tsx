@@ -14,7 +14,7 @@ export const SuccessSideEffects = ({
   count,
 }: SuccessSideEffectsProps) => {
   useEffect(() => {
-    if (!cookieExists('clientSideRevenue')) return;
+    if (cookieExists('clientSideRevenue')) return;
 
     function removeListeners() {
       window.removeEventListener(
