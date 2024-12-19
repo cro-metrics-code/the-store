@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { cookieExists } from '@/lib/cookie';
+
 interface SuccessSideEffectsProps {
   id: string;
   revenue: number;
