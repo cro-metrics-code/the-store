@@ -9,8 +9,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "pnpm eslint --fix",
-    "format": "pnpm prettier --write --ignore-unknown",
+    "lint": "eslint --cache --cache-location .cache/.eslintcache --fix --quiet .",
+    "format": "prettier --cache --cache-location .cache/.prettier-cache -u -w .",
     "check-types": "tsc --skipLibCheck --noEmit",
     "prepare": "husky"
   },

@@ -46,7 +46,6 @@ If you want to add a platform snippet for a PoC or testing purposes:
 - Node.js v20+
   - It _should_ v22, but it has only been tested on v20.
 - pnpm
-
   - The easiest way to install pnpm is via Node.js Corepack. From the root of the project run:
 
     ```shell
