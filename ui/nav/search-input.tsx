@@ -38,7 +38,7 @@ export const SearchInput = ({ placeholder }: { placeholder: string }) => {
   const searchParamQuery = searchParams.get('q') ?? '';
 
   const [query, setQuery] = useState(searchParamQuery);
-  const [_isQueryPending, debouncedQuery] = useDebouncedValue(query, 100);
+  const [, debouncedQuery] = useDebouncedValue(query, 100);
 
   useEffect(() => {
     router.prefetch(`/search?q=${encodeURIComponent(query)}`);
@@ -60,7 +60,9 @@ export const SearchInput = ({ placeholder }: { placeholder: string }) => {
 
   useEffect(() => {
     if (pathname !== '/search') {
-      setQuery('');
+      setTimeout(() => {
+        setQuery('');
+      }, 0);
     }
   }, [pathname]);
 

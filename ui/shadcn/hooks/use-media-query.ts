@@ -10,7 +10,9 @@ export const useMediaQuery = (query: string) => {
 
     const result = matchMedia(query);
     result.addEventListener('change', onChange);
-    setValue(result.matches);
+    setTimeout(() => {
+      setValue(result.matches);
+    }, 0);
 
     return () => result.removeEventListener('change', onChange);
   }, [query]);

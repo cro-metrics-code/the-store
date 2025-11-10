@@ -1,7 +1,10 @@
 import { cn } from '@/lib/utils';
-import { Input, type InputProps } from '@/ui/shadcn/input';
+import { Input } from '@/ui/shadcn/input';
 import { Label } from '@/ui/shadcn/label';
 import { type ReactNode, useMemo } from 'react';
+import type { InputHTMLAttributes } from 'react';
+
+type InputProps = InputHTMLAttributes<HTMLInputElement>;
 
 export interface ElWithErrorsProps extends InputProps {
   errors: undefined | null | Record<string, string[] | undefined | null>;
@@ -48,7 +51,7 @@ export const ElWithErrors = ({
         {currentErrors?.map((error) => (
           <span
             key={error}
-            className="ml-2 text-xs leading-none text-destructive"
+            className="text-destructive ml-2 text-xs leading-none"
           >
             {error}
           </span>

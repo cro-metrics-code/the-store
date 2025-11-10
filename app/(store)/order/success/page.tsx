@@ -51,7 +51,7 @@ const OrderDetailsPage = async (props: {
         <PaymentStatus status={order.order.status} />
       </h1>
       <p className="mt-2">
-        Thank you! You'll find the details of your order below.
+        Thank you! You&apos;ll find the details of your order below.
       </p>
       <dl className="mt-12 space-y-2 text-sm">
         <dt className="text-foreground font-semibold">Order Number</dt>

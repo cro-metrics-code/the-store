@@ -7,7 +7,7 @@ export const CartEmpty = async () => (
       <ShoppingCartIcon className="h-12 w-12 text-neutral-500" />
       <h2 className="text-2xl font-bold tracking-tight">Your cart is empty</h2>
       <p className="text-neutral-500">
-        Looks like you haven't added anything to your cart yet.
+        Looks like you haven&apos;t added anything to your cart yet.
       </p>
     </div>
     <PrefetchLink
