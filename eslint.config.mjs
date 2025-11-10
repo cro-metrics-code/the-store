@@ -1,48 +1,18 @@
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import prettierConfig from 'eslint-config-prettier';
-import nextPlugin from '@next/eslint-plugin-next';
-import reactCompiler from 'eslint-plugin-react-compiler';
-import reactPlugin from 'eslint-plugin-react';
-import hooksPlugin from 'eslint-plugin-react-hooks';
-import typescriptParser from '@typescript-eslint/parser';
+import prettier from 'eslint-config-prettier/flat';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTs from 'eslint-config-next/typescript';
 
-export default tseslint.config(
-  {
-    languageOptions: {
-      parser: typescriptParser,
-    },
-    plugins: {
-      '@next/next': nextPlugin,
-      react: reactPlugin,
-      'react-hooks': hooksPlugin,
-      'react-compiler': reactCompiler,
-    },
-    rules: {
-      ...reactPlugin.configs['jsx-runtime'].rules,
-      ...hooksPlugin.configs.recommended.rules,
-      ...nextPlugin.configs.recommended.rules,
-      ...nextPlugin.configs['core-web-vitals'].rules,
-      '@next/next/no-img-element': 'error',
-    },
-  },
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
-  prettierConfig,
-  {
-    rules: {
-      '@typescript-eslint/no-empty-function': 'error',
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-        },
-      ],
-      '@typescript-eslint/prefer-as-const': 'error',
-    },
-  },
-  {
-    ignores: ['node_modules', '.next'],
-  },
-);
+export default defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  prettier,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
+  ]),
+]);
