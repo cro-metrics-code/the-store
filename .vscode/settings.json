@@ -7,7 +7,14 @@
       "[`'\"]([^'\"`,;]*)[`'\"]"
     ]
   ],
-  "tailwindCSS.classAttributes": ["className", "tw", "class", "cn"],
+  "tailwindCSS.classAttributes": [
+    "className",
+    "tw",
+    "class",
+    "cn",
+    "cva",
+    "cx"
+  ],
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.associations": {
@@ -29,12 +36,5 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cursor.general.enableShadowWorkspace": true,
-  "markdownlint.config": {
-    "default": true,
-    "line-length": false,
-    "no-inline-html": {
-      "allowed_elements": ["details", "summary", "a"]
-    }
-  }
+  "cursor.general.enableShadowWorkspace": true
 }
