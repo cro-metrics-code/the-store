@@ -24,9 +24,6 @@ const nextConfig: NextConfig = {
   },
   transpilePackages: ['next-mdx-remote', 'commerce-kit'],
   experimental: {
-    esmExternals: true,
-    scrollRestoration: true,
-    cpus: 1,
     mdxRs: true,
   },
   rewrites: async () => [
