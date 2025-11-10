@@ -26,10 +26,10 @@ export const CheckoutCard = async ({ cart }: { cart: Commerce.Cart }) => {
 
   return (
     <section className="max-w-md pb-12">
-      <h2 className="text-3xl font-bold leading-none tracking-tight">
+      <h2 className="text-3xl leading-none font-bold tracking-tight">
         Checkout
       </h2>
-      <p className="mb-4 mt-2 text-sm text-muted-foreground">
+      <p className="text-muted-foreground mt-2 mb-4 text-sm">
         Provide billing and shipping details below.
       </p>
       <StripePayment

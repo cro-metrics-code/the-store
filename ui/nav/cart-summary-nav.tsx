@@ -49,7 +49,7 @@ const CartSummaryNavInner = async () => {
               prefetch={true}
             >
               <ShoppingBagIcon />
-              <span className="absolute bottom-0 right-0 inline-flex h-5 w-5 translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border-2 bg-white text-center text-xs">
+              <span className="absolute right-0 bottom-0 inline-flex h-5 w-5 translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border-2 bg-white text-center text-xs">
                 <span className="sr-only">Items in cart: </span>
                 {totalItems}
               </span>

@@ -116,11 +116,11 @@ export default async function SingleProductPage(props: {
       <StickyBottom product={product}>
         <div className="mt-4 grid gap-4 lg:grid-cols-12">
           <div className="lg:col-span-5 lg:col-start-8">
-            <h1 className="text-3xl font-bold leading-none tracking-tight text-foreground">
+            <h1 className="text-foreground text-3xl leading-none font-bold tracking-tight">
               {product.name}
             </h1>
             {product.default_price.unit_amount && (
-              <p className="mt-2 text-2xl font-medium leading-none tracking-tight text-foreground/70">
+              <p className="text-foreground/70 mt-2 text-2xl leading-none font-medium tracking-tight">
                 {formatMoney({
                   amount: product.default_price.unit_amount,
                   currency: product.default_price.currency,

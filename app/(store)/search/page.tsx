@@ -33,7 +33,7 @@ export default async function SearchPage(props: {
 
   return (
     <main>
-      <h1 className="text-3xl font-bold leading-none tracking-tight text-foreground">
+      <h1 className="text-foreground text-3xl leading-none font-bold tracking-tight">
         {`Searching for "${query}"`}
       </h1>
       {products?.length ?

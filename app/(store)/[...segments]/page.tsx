@@ -43,7 +43,7 @@ export default async function Page(props: {
   }
 
   return (
-    <div className="prose pb-8 pt-4 lg:prose-lg xl:prose-xl">
+    <div className="prose lg:prose-lg xl:prose-xl pt-4 pb-8">
       <MDXRemote
         source={page.content}
         components={{

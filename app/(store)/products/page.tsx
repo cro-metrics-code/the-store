@@ -15,7 +15,7 @@ export default async function AllProductsPage() {
 
   return (
     <main className="pb-8">
-      <h1 className="text-3xl font-bold leading-none tracking-tight text-foreground">
+      <h1 className="text-foreground text-3xl leading-none font-bold tracking-tight">
         All Products
       </h1>
       <ProductList products={products} />
