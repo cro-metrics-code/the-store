@@ -46,7 +46,7 @@ const OrderDetailsPage = async (props: {
         cartId={order.order.id}
         cookieId={cookie?.id}
       />
-      <h1 className="mt-4 inline-flex items-center text-3xl font-bold leading-none tracking-tight">
+      <h1 className="mt-4 inline-flex items-center text-3xl leading-none font-bold tracking-tight">
         Order Confirmation
         <PaymentStatus status={order.order.status} />
       </h1>
@@ -54,7 +54,7 @@ const OrderDetailsPage = async (props: {
         Thank you! You'll find the details of your order below.
       </p>
       <dl className="mt-12 space-y-2 text-sm">
-        <dt className="font-semibold text-foreground">Order Number</dt>
+        <dt className="text-foreground font-semibold">Order Number</dt>
         <dd className="text-accent-foreground">{order.order.id.slice(3)}</dd>
       </dl>
 
@@ -62,8 +62,8 @@ const OrderDetailsPage = async (props: {
       <ul className="my-8 divide-y border-y">
         {order.lines.map((line) => (
           <li key={line.product.id} className="py-8">
-            <article className="grid grid-cols-[auto,1fr] grid-rows-[repeat(auto,3)] justify-start gap-x-4 sm:gap-x-8">
-              <h3 className="row-start-1 font-semibold leading-none text-neutral-700">
+            <article className="grid grid-cols-[auto_1fr] grid-rows-[repeat(auto,3)] justify-start gap-x-4 sm:gap-x-8">
+              <h3 className="row-start-1 leading-none font-semibold text-neutral-700">
                 {formatProductName(
                   line.product.name,
                   line.product.metadata.variant,
@@ -79,16 +79,16 @@ const OrderDetailsPage = async (props: {
                   alt=""
                 />
               ))}
-              <div className="prose row-start-2 text-secondary-foreground">
+              <div className="prose text-secondary-foreground row-start-2">
                 <Markdown source={line.product.description || ''} />
               </div>
               <footer className="row-start-3 mt-2 self-end">
-                <dl className="grid grid-cols-[max-content,auto] gap-2 sm:grid-cols-3">
+                <dl className="grid grid-cols-[max-content_auto] gap-2 sm:grid-cols-3">
                   <div className="max-sm:col-span-2 max-sm:grid max-sm:grid-cols-subgrid">
-                    <dt className="text-sm font-semibold text-foreground">
+                    <dt className="text-foreground text-sm font-semibold">
                       Price
                     </dt>
-                    <dd className="text-sm text-accent-foreground">
+                    <dd className="text-accent-foreground text-sm">
                       {formatMoney({
                         amount: line.product.default_price.unit_amount ?? 0,
                         currency: line.product.default_price.currency,
@@ -97,19 +97,19 @@ const OrderDetailsPage = async (props: {
                   </div>
 
                   <div className="max-sm:col-span-2 max-sm:grid max-sm:grid-cols-subgrid">
-                    <dt className="text-sm font-semibold text-foreground">
+                    <dt className="text-foreground text-sm font-semibold">
                       Quantity
                     </dt>
-                    <dd className="text-sm text-accent-foreground">
+                    <dd className="text-accent-foreground text-sm">
                       {line.quantity}
                     </dd>
                   </div>
 
                   <div className="max-sm:col-span-2 max-sm:grid max-sm:grid-cols-subgrid">
-                    <dt className="text-sm font-semibold text-foreground">
+                    <dt className="text-foreground text-sm font-semibold">
                       Total
                     </dt>
-                    <dd className="text-sm text-accent-foreground">
+                    <dd className="text-accent-foreground text-sm">
                       {formatMoney({
                         amount:
                           (line.product.default_price.unit_amount ?? 0) *
@@ -125,18 +125,18 @@ const OrderDetailsPage = async (props: {
         ))}
         {order.shippingRate?.fixed_amount && (
           <li className="py-8">
-            <article className="grid grid-cols-[auto,1fr] grid-rows-[repeat(auto,3)] justify-start gap-x-4 sm:gap-x-8">
-              <h3 className="row-start-1 font-semibold leading-none text-neutral-700">
+            <article className="grid grid-cols-[auto_1fr] grid-rows-[repeat(auto,3)] justify-start gap-x-4 sm:gap-x-8">
+              <h3 className="row-start-1 leading-none font-semibold text-neutral-700">
                 {order.shippingRate.display_name}
               </h3>
               <div className="col-start-1 row-span-3 row-start-1 mt-0.5 w-16 sm:mt-0 sm:w-32" />
               <footer className="row-start-3 mt-2 self-end">
-                <dl className="grid grid-cols-[max-content,auto] gap-2 sm:grid-cols-3">
+                <dl className="grid grid-cols-[max-content_auto] gap-2 sm:grid-cols-3">
                   <div className="max-sm:col-span-2 max-sm:grid max-sm:grid-cols-subgrid">
-                    <dt className="text-sm font-semibold text-foreground">
+                    <dt className="text-foreground text-sm font-semibold">
                       Price
                     </dt>
-                    <dd className="text-sm text-accent-foreground">
+                    <dd className="text-accent-foreground text-sm">
                       {formatMoney({
                         amount: order.shippingRate.fixed_amount.amount ?? 0,
                         currency: order.shippingRate.fixed_amount.currency,
@@ -154,7 +154,7 @@ const OrderDetailsPage = async (props: {
         <h2 className="sr-only">Order Details</h2>
         {isDigital(order.lines) && (
           <div className="mb-8">
-            <h3 className="font-semibold leading-none text-neutral-700">
+            <h3 className="leading-none font-semibold text-neutral-700">
               Digital Asset
             </h3>
             <ul className="mt-3">
@@ -181,7 +181,7 @@ const OrderDetailsPage = async (props: {
         <div className="grid gap-8 sm:grid-cols-2">
           {!isDigital(order.lines) && order.order.shipping?.address && (
             <div>
-              <h3 className="font-semibold leading-none text-neutral-700">
+              <h3 className="leading-none font-semibold text-neutral-700">
                 Shipping Address
               </h3>
               <p className="mt-3 text-sm">
@@ -211,7 +211,7 @@ const OrderDetailsPage = async (props: {
 
           {order.order.payment_method?.billing_details.address && (
             <div>
-              <h3 className="font-semibold leading-none text-neutral-700">
+              <h3 className="leading-none font-semibold text-neutral-700">
                 Billing Address
               </h3>
               <p className="mt-3 text-sm">
@@ -247,7 +247,7 @@ const OrderDetailsPage = async (props: {
           {order.order.payment_method?.type === 'card' &&
             order.order.payment_method.card && (
               <div className="border-t pt-8 sm:col-span-2">
-                <h3 className="font-semibold leading-none text-neutral-700">
+                <h3 className="leading-none font-semibold text-neutral-700">
                   Payment Method
                 </h3>
                 <p className="mt-3 text-sm">
@@ -278,7 +278,7 @@ const OrderDetailsPage = async (props: {
             )}
 
           <div className="col-span-2 grid grid-cols-2 gap-8 border-t pt-8">
-            <h3 className="font-semibold leading-none text-neutral-700">
+            <h3 className="leading-none font-semibold text-neutral-700">
               Total
             </h3>
             <p>

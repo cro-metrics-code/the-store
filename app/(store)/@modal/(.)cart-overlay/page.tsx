@@ -35,7 +35,7 @@ export default async function CartModalPage(props: {
           <PrefetchLink
             replace
             href="/cart"
-            className="text-sm text-muted-foreground underline"
+            className="text-muted-foreground text-sm underline"
           >
             Open full view
           </PrefetchLink>
@@ -46,7 +46,7 @@ export default async function CartModalPage(props: {
             {cart.lines.map((line) => (
               <li
                 key={line.product.id}
-                className="grid grid-cols-[4rem,1fr,max-content] grid-rows-[auto,auto] gap-x-4 gap-y-2 py-6"
+                className="grid grid-cols-[4rem_1fr_max-content] grid-rows-[auto_auto] gap-x-4 gap-y-2 py-6"
               >
                 {line.product.images[0] ?
                   <div className="col-span-1 row-span-2 bg-neutral-100">
@@ -60,19 +60,19 @@ export default async function CartModalPage(props: {
                   </div>
                 : <div className="col-span-1 row-span-2" />}
 
-                <h3 className="-mt-1 font-semibold leading-tight">
+                <h3 className="-mt-1 leading-tight font-semibold">
                   {formatProductName(
                     line.product.name,
                     line.product.metadata.variant,
                   )}
                 </h3>
-                <p className="text-sm font-medium leading-none">
+                <p className="text-sm leading-none font-medium">
                   {formatMoney({
                     amount: line.product.default_price.unit_amount ?? 0,
                     currency: line.product.default_price.currency,
                   })}
                 </p>
-                <p className="self-end text-sm font-medium text-muted-foreground">
+                <p className="text-muted-foreground self-end text-sm font-medium">
                   Quantity: {line.quantity}
                 </p>
               </li>

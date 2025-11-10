@@ -57,7 +57,7 @@ export default async function Image(props: {
                 currency: product.default_price.currency,
               })}
             </p>
-            <p tw="font-normal text-xl max-h-[7rem]">{product.description}</p>
+            <p tw="font-normal text-xl max-h-28">{product.description}</p>
           </div>
         </div>
       </div>

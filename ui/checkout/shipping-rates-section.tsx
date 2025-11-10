@@ -21,11 +21,11 @@ export const ShippingRatesSection = ({
     <fieldset
       className={cn('grid gap-6 rounded-lg', { 'cursor-wait': isPending })}
     >
-      <legend className="mb-2 whitespace-nowrap text-sm font-medium">
+      <legend className="mb-2 text-sm font-medium whitespace-nowrap">
         Shipping method
       </legend>
       <RadioGroup
-        className="grid max-w-md gap-4 xxs:grid-cols-3"
+        className="xxs:grid-cols-3 grid max-w-md gap-4"
         value={optimisticValue ?? undefined}
         onValueChange={(newValue) => {
           transition(() => {
@@ -38,15 +38,15 @@ export const ShippingRatesSection = ({
           <label
             key={rate.id}
             className={cn(
-              'grid content-end items-end rounded-md border-2 border-muted px-2 py-2 transition-colors',
-              `has-[[aria-checked="true"]]:border-foreground/60`,
+              'border-muted grid content-end items-end rounded-md border-2 px-2 py-2 transition-colors',
+              `has-aria-checked:border-foreground/60`,
               isPending ? 'cursor-wait' : 'cursor-pointer hover:bg-neutral-50',
             )}
           >
             <RadioGroupItem value={rate.id} className="sr-only" />
             <p className="text-sm font-medium">{rate.display_name}</p>
             {rate.delivery_estimate && (
-              <p className="text-xs text-muted-foreground">
+              <p className="text-muted-foreground text-xs">
                 <FormatDeliveryEstimate estimate={rate.delivery_estimate} />
               </p>
             )}

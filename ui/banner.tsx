@@ -12,7 +12,7 @@ export const Banner = () => {
   if (!isOpen) return null;
 
   return (
-    <div className="bg-gradient-to-r from-indigo-100 via-indigo-200 to-indigo-300 px-4 py-3 text-indigo-900">
+    <div className="bg-linear-to-r from-indigo-100 via-indigo-200 to-indigo-300 px-4 py-3 text-indigo-900">
       <div className="flex items-center justify-between gap-x-4">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-x-4 max-md:w-full">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 max-md:w-full max-md:justify-evenly">
