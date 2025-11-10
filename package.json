@@ -63,7 +63,7 @@
     "@tailwindcss/postcss": "4.1.17",
     "@tailwindcss/typography": "0.5.19",
     "@types/mdx": "2.0.13",
-    "@types/node": "^24.10.0",
+    "@types/node": "^22.19.0",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "@vitejs/plugin-react": "5.1.0",
@@ -85,27 +85,6 @@
     "tailwindcss": "4.1.17",
     "typescript": "5.9.3",
     "typescript-eslint": "8.46.4"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "allowedVersions": {
-        "react": "19.2.0",
-        "react-dom": "19.2.0",
-        "next": "16.0.1",
-        "@types/node": "^24.10.0"
-      },
-      "allowAny": [
-        "@types/react",
-        "@types/react-dom"
-      ]
-    },
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp",
-      "unrs-resolver",
-      "@vercel/speed-insights",
-      "msw"
-    ]
   },
   "engines": {
     "node": "22.x",
