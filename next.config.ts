@@ -8,9 +8,6 @@ const withMDX = MDX();
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   output: process.env.DOCKER ? 'standalone' : undefined,
   logging: {
     fetches: {
@@ -30,21 +27,7 @@ const nextConfig: NextConfig = {
     esmExternals: true,
     scrollRestoration: true,
     cpus: 1,
-    reactOwnerStack: true,
-    reactCompiler: true,
     mdxRs: true,
-  },
-  webpack: (config) => {
-    return {
-      ...config,
-      resolve: {
-        ...config.resolve,
-        extensionAlias: {
-          '.js': ['.js', '.ts'],
-          '.jsx': ['.jsx', '.tsx'],
-        },
-      },
-    };
   },
   rewrites: async () => [
     {

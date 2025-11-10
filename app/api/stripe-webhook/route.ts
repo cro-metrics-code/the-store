@@ -2,7 +2,7 @@ import { env } from '@/env/server';
 import { unpackPromise } from '@/lib/utils';
 import * as Commerce from 'commerce-kit';
 import { cartMetadataSchema } from 'commerce-kit/internal';
-import { unstable_expireTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 
 export async function POST(request: Request) {
   if (!env.STRIPE_WEBHOOK_SECRET) {
@@ -58,11 +58,11 @@ export async function POST(request: Request) {
             },
           });
 
-          unstable_expireTag(`product-${product.id}`);
+          revalidateTag(`product-${product.id}`, { expire: 0 });
         }
       }
 
-      unstable_expireTag(`cart-${event.data.object.id}`);
+      revalidateTag(`cart-${event.data.object.id}`, { expire: 0 });
 
       break;
     }

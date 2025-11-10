@@ -6,7 +6,7 @@ import {
   setCartCookieJson,
 } from '@/lib/cart';
 import * as Commerce from 'commerce-kit';
-import { unstable_expireTag } from 'next/cache';
+import { updateTag } from 'next/cache';
 
 export const getCartFromCookiesAction = async () => {
   const cartJson = await getCartCookieJson();
@@ -25,7 +25,7 @@ export const findOrCreateCartIdFromCookiesAction = async () => {
     id: newCart.id,
     linesCount: 0,
   });
-  unstable_expireTag(`cart-${newCart.id}`);
+  updateTag(`cart-${newCart.id}`);
 
   return newCart.id;
 };
@@ -35,9 +35,9 @@ export const clearCartCookieAction = async () => {
   if (!cookie) return;
 
   clearCartCookie();
-  unstable_expireTag(`cart-${cookie.id}`);
+  updateTag(`cart-${cookie.id}`);
   // FIXME not ideal, revalidate per domain instead (multi-tenant)
-  unstable_expireTag('admin-orders');
+  updateTag('admin-orders');
 };
 
 export const addToCartAction = async (formData: FormData) => {
@@ -58,7 +58,7 @@ export const addToCartAction = async (formData: FormData) => {
       linesCount: Commerce.cartCount(updatedCart.metadata),
     });
 
-    unstable_expireTag(`cart-${updatedCart.id}`);
+    updateTag(`cart-${updatedCart.id}`);
   }
 };
 
