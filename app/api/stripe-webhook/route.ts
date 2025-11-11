@@ -4,7 +4,7 @@ import { getProductsFromMetadata, provider } from 'commerce-kit';
 import { cartMetadataSchema } from 'commerce-kit/internal';
 import { revalidateTag } from 'next/cache';
 
-const POST = async (request: Request) => {
+export const POST = async (request: Request) => {
   if (!env.STRIPE_WEBHOOK_SECRET) {
     return new Response('STRIPE_WEBHOOK_SECRET is not configured', {
       status: 500,
@@ -71,5 +71,3 @@ const POST = async (request: Request) => {
   }
   return Response.json({ received: true });
 };
-
-export default POST;
