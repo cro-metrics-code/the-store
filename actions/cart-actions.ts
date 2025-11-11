@@ -5,7 +5,7 @@ import {
   getCartCookieJson,
   setCartCookieJson,
 } from '@/lib/cart';
-import { posthogServer } from '@/lib/posthog';
+import PostHogClient from '@/lib/posthog';
 import {
   cartAdd,
   cartChangeQuantity,
@@ -91,6 +91,7 @@ export const addToCartAction = async (formData: FormData) => {
 };
 
 export const increaseQuantity = async (productId: string) => {
+  const posthogClient = PostHogClient();
   const cart = await getCartFromCookiesAction();
   if (!cart) throw new Error('Cart not found');
 
@@ -106,7 +107,7 @@ export const increaseQuantity = async (productId: string) => {
   // Track quantity increase
   if (product) {
     const distinctId = await getDistinctId();
-    posthogServer.capture({
+    posthogClient.capture({
       distinctId: distinctId ?? `anonymous-${cart.cart.id}`,
       event: 'cart_item_quantity_increased',
       properties: {
@@ -123,6 +124,7 @@ export const increaseQuantity = async (productId: string) => {
 };
 
 export const decreaseQuantity = async (productId: string) => {
+  const posthogClient = PostHogClient();
   const cart = await getCartFromCookiesAction();
   if (!cart) throw new Error('Cart not found');
 
@@ -138,7 +140,7 @@ export const decreaseQuantity = async (productId: string) => {
   // Track quantity decrease
   if (product) {
     const distinctId = await getDistinctId();
-    posthogServer.capture({
+    posthogClient.capture({
       distinctId: distinctId ?? `anonymous-${cart.cart.id}`,
       event: 'cart_item_quantity_decreased',
       properties: {

@@ -1,11 +1,30 @@
 import { env } from '@/env';
+import { getBootstrapData } from '@/lib/getBootstrapData';
 import posthog from 'posthog-js';
 
-posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
-  api_host: '/ph-collect',
-  ui_host: 'https://us.posthog.com',
-  defaults: '2025-05-24',
-  person_profiles: 'always',
-  capture_exceptions: true, // This enables capturing exceptions using Error Tracking, set to false if you don't want this
-  debug: true,
-});
+const initPosthog = async () => {
+  try {
+    const bootstrap = await getBootstrapData();
+
+    posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
+      api_host: env.NEXT_PUBLIC_POSTHOG_PROXY_PATH,
+      ui_host: env.NEXT_PUBLIC_POSTHOG_HOST,
+      defaults: '2025-05-24',
+      person_profiles: 'always',
+      capture_exceptions: true,
+      bootstrap,
+    });
+  } catch (error) {
+    console.error('Error loading experiments!', error);
+
+    posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
+      api_host: env.NEXT_PUBLIC_POSTHOG_PROXY_PATH,
+      ui_host: env.NEXT_PUBLIC_POSTHOG_HOST,
+      defaults: '2025-05-24',
+      person_profiles: 'always',
+      capture_exceptions: true,
+    });
+  }
+};
+
+void initPosthog();

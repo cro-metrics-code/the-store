@@ -1,23 +1,11 @@
 'use client';
 
 import { env } from '@/env';
+import type { PosthogBootstrapData } from '@/lib/getBootstrapData';
 import { usePathname, useSearchParams } from 'next/navigation';
 import posthog from 'posthog-js';
-import { PostHogProvider as PHProvider } from 'posthog-js/react';
-import { Suspense, useEffect, type ReactNode } from 'react';
-
-const POSTHOG_PROXY_PATH = '/ph-collect';
-
-if (typeof window !== 'undefined') {
-  posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
-    api_host: POSTHOG_PROXY_PATH,
-    ui_host: env.NEXT_PUBLIC_POSTHOG_HOST,
-    person_profiles: 'always',
-    capture_pageview: false, // Disable automatic pageview capture, we'll handle it manually
-    capture_pageleave: true,
-    debug: true,
-  });
-}
+import { PostHogProvider } from 'posthog-js/react';
+import { useEffect, type ReactNode } from 'react';
 
 const PostHogPageView = () => {
   const pathname = usePathname();
@@ -38,13 +26,26 @@ const PostHogPageView = () => {
   return null;
 };
 
-export function PostHogProvider({ children }: { children: ReactNode }) {
-  return (
-    <PHProvider client={posthog}>
-      <Suspense fallback={null}>
-        <PostHogPageView />
-      </Suspense>
-      {children}
-    </PHProvider>
-  );
+interface PHProviderProps {
+  children: ReactNode;
+  bootstrapData: PosthogBootstrapData;
 }
+
+export const PHProvider = ({ children, bootstrapData }: PHProviderProps) => {
+  if (typeof window !== 'undefined') {
+    posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
+      api_host: env.NEXT_PUBLIC_POSTHOG_PROXY_PATH,
+      ui_host: env.NEXT_PUBLIC_POSTHOG_HOST,
+      person_profiles: 'always',
+      debug: true,
+      bootstrap: bootstrapData,
+    });
+  }
+
+  return (
+    <PostHogProvider client={posthog}>
+      <PostHogPageView />
+      {children}
+    </PostHogProvider>
+  );
+};

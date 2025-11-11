@@ -1,6 +1,7 @@
 import '@/app/globals.css';
 import { env } from '@/env';
-import { PostHogProvider } from '@/lib/posthog-provider';
+import { getServerBootstrapData } from '@/lib/getServerBootstrapData';
+import { PHProvider } from '@/lib/posthog-provider';
 import { Toaster } from '@/ui/shadcn/sonner';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -17,22 +18,26 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-const RootLayout = async ({ children }: RootLayoutProps) => (
-  <html lang="en" className="h-full antialiased">
-    <body className="flex min-h-full flex-col">
-      <PostHogProvider>
-        <div
-          className="flex min-h-full flex-1 flex-col bg-white"
-          vaul-drawer-wrapper=""
-        >
-          {children}
-        </div>
-        <Toaster position="top-center" offset={10} />
-        <SpeedInsights />
-        <Analytics />
-      </PostHogProvider>
-    </body>
-  </html>
-);
+const RootLayout = async ({ children }: RootLayoutProps) => {
+  const bootstrapData = await getServerBootstrapData();
+
+  return (
+    <html lang="en" className="h-full antialiased">
+      <PHProvider bootstrapData={bootstrapData}>
+        <body className="flex min-h-full flex-col">
+          <div
+            className="flex min-h-full flex-1 flex-col bg-white"
+            vaul-drawer-wrapper=""
+          >
+            {children}
+          </div>
+          <Toaster position="top-center" offset={10} />
+          <SpeedInsights />
+          <Analytics />
+        </body>
+      </PHProvider>
+    </html>
+  );
+};
 
 export default RootLayout;

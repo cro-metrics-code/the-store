@@ -1,6 +1,7 @@
 import { env } from '@/env';
 import AccessoriesImage from '@/images/accessories.jpg';
 import ApparelImage from '@/images/apparel.jpg';
+import { getBootstrapData } from '@/lib/getBootstrapData';
 import { CategoryBox } from '@/ui/category-box';
 import { PrefetchLink } from '@/ui/prefetch-link';
 import { ProductList } from '@/ui/products/product-list';
@@ -15,13 +16,21 @@ export const metadata: Metadata = {
 const Home = async () => {
   const products = await productBrowse({ first: 6 });
 
+  const bootstrapData = await getBootstrapData();
+  const flagValue = bootstrapData.featureFlags['homepage-hero'];
+  console.log('flagValue', flagValue);
+  const heroTitle =
+    flagValue === 'v0' ?
+      'v0 Heading: Discover our Curated Collection'
+    : 'v1 Heading: Discover our New Collection';
+
   return (
     <main>
       <section className="rounded bg-neutral-100 py-8 sm:py-12">
         <div className="mx-auto grid grid-cols-1 items-center justify-items-center gap-8 px-8 sm:px-16 md:grid-cols-2">
           <div className="max-w-md space-y-4">
             <h2 className="text-3xl font-bold tracking-tight text-balance md:text-4xl">
-              Discover our Curated Collection
+              {heroTitle}
             </h2>
             <p className="text-pretty text-neutral-600">
               Explore our carefully selected products for your home and

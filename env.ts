@@ -17,6 +17,7 @@ export const env = createEnv({
     NEXT_PUBLIC_DEV_URL: z.string().url(),
     NEXT_PUBLIC_POSTHOG_KEY: z.string(),
     NEXT_PUBLIC_POSTHOG_HOST: z.string().url(),
+    NEXT_PUBLIC_POSTHOG_PROXY_PATH: z.string(),
     NEXT_PUBLIC_NEWSLETTER_ENDPOINT: z.string().url().optional(),
   },
   experimental__runtimeEnv: {
@@ -32,6 +33,7 @@ export const env = createEnv({
       }`,
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+    NEXT_PUBLIC_POSTHOG_PROXY_PATH: process.env.NEXT_PUBLIC_POSTHOG_PROXY_PATH,
     NEXT_PUBLIC_NEWSLETTER_ENDPOINT:
       process.env.NEXT_PUBLIC_NEWSLETTER_ENDPOINT,
   },
