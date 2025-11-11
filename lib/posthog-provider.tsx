@@ -12,9 +12,10 @@ if (typeof window !== 'undefined') {
   posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
     api_host: POSTHOG_PROXY_PATH,
     ui_host: env.NEXT_PUBLIC_POSTHOG_HOST,
-    person_profiles: 'identified_only',
+    person_profiles: 'always',
     capture_pageview: false, // Disable automatic pageview capture, we'll handle it manually
     capture_pageleave: true,
+    debug: true,
   });
 }
 
