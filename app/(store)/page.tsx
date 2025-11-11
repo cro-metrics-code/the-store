@@ -20,9 +20,9 @@ const Home = async () => {
   const flagValue = bootstrapData.featureFlags['home-hero-heading'];
 
   const heroTitle =
-    flagValue === 'v0' ?
-      'v0 Heading: Buy our stuff'
-    : `v1 Heading: Why haven't you bought our stuff yet?`;
+    flagValue === 'v1' ?
+      `v1 Heading: Why haven't you bought our stuff yet?`
+    : 'v0 Heading: Buy our stuff';
 
   return (
     <main>
