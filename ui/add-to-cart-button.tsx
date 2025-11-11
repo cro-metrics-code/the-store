@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/ui/shadcn/button';
 import { Loader2Icon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { usePostHog } from 'posthog-js/react';
 import { useTransition } from 'react';
 
 export const AddToCartButton = ({
@@ -18,6 +19,7 @@ export const AddToCartButton = ({
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const isDisabled = disabled || pending;
+  const posthog = usePostHog();
 
   return (
     <Button
@@ -30,6 +32,9 @@ export const AddToCartButton = ({
           e.preventDefault();
           return;
         }
+        posthog.capture('product_added_to_cart', {
+          product_id: productId,
+        });
         startTransition(() => router.push(`/cart-overlay?add=${productId}`));
       }}
       aria-disabled={isDisabled}
