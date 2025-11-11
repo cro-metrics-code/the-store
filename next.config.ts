@@ -26,12 +26,21 @@ const nextConfig: NextConfig = {
   experimental: {
     mdxRs: true,
   },
-  rewrites: async () => [
-    {
-      source: '/stats/:match*',
-      destination: 'https://eu.umami.is/:match*',
-    },
-  ],
+  // Add PostHog rewrites
+  async rewrites() {
+    return [
+      {
+        source: '/ph-collect/static/:path*',
+        destination: 'https://us-assets.i.posthog.com/static/:path*',
+      },
+      {
+        source: '/ph-collect/:path*',
+        destination: 'https://us.i.posthog.com/:path*',
+      },
+    ];
+  },
+  // Required to support PostHog trailing slash API requests
+  skipTrailingSlashRedirect: true,
 };
 
 export default withMDX(nextConfig);

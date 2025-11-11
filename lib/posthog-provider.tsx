@@ -6,9 +6,12 @@ import posthog from 'posthog-js';
 import { PostHogProvider as PHProvider } from 'posthog-js/react';
 import { Suspense, useEffect, type ReactNode } from 'react';
 
+const POSTHOG_PROXY_PATH = '/ph-collect';
+
 if (typeof window !== 'undefined') {
   posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
-    api_host: env.NEXT_PUBLIC_POSTHOG_HOST,
+    api_host: POSTHOG_PROXY_PATH,
+    ui_host: env.NEXT_PUBLIC_POSTHOG_HOST,
     person_profiles: 'identified_only',
     capture_pageview: false, // Disable automatic pageview capture, we'll handle it manually
     capture_pageleave: true,
