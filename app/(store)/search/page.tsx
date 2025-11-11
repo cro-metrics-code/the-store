@@ -1,9 +1,10 @@
-import { env } from '@/env/client';
-import { Search } from '@/lib/api';
+import { env } from '@/env';
+import { searchProducts } from '@/lib/api';
 import { ProductList } from '@/ui/products/product-list';
 import { ProductNotFound } from '@/ui/products/product-not-found';
 import { RedirectType, redirect } from 'next/navigation';
 import type { Metadata } from 'next/types';
+import { SearchTracker } from './search-tracker';
 
 export const generateMetadata = async (props: {
   searchParams: Promise<{
@@ -17,11 +18,11 @@ export const generateMetadata = async (props: {
   };
 };
 
-export default async function SearchPage(props: {
+const SearchPage = async (props: {
   searchParams: Promise<{
     q?: string;
   }>;
-}) {
+}) => {
   const searchParams = await props.searchParams;
   const query = searchParams.q;
 
@@ -29,10 +30,11 @@ export default async function SearchPage(props: {
     return redirect('/', RedirectType.replace);
   }
 
-  const products = await Search.searchProducts(query);
+  const products = await searchProducts(query);
 
   return (
     <main>
+      <SearchTracker query={query} results={products} />
       <h1 className="text-foreground text-3xl leading-none font-bold tracking-tight">
         {`Searching for "${query}"`}
       </h1>
@@ -41,4 +43,6 @@ export default async function SearchPage(props: {
       : <ProductNotFound query={query} />}
     </main>
   );
-}
+};
+
+export default SearchPage;

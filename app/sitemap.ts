@@ -1,29 +1,31 @@
-import { env } from '@/env/client';
-import * as Commerce from 'commerce-kit';
+import { env } from '@/env';
+import { productBrowse } from 'commerce-kit';
 import type { MetadataRoute } from 'next';
 
-const Categories = [
+const categories = [
   { name: 'Apparel', slug: 'apparel' },
   { name: 'Accessories', slug: 'accessories' },
 ];
 
 type Item = MetadataRoute.Sitemap[number];
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const products = await Commerce.productBrowse({ first: 100 });
+
+const Sitemap = async (): Promise<MetadataRoute.Sitemap> => {
+  const products = await productBrowse({ first: 100 });
+
   const productUrls = products.map(
-    (product) =>
+    ({ metadata, updated }) =>
       ({
-        url: `${env.NEXT_PUBLIC_URL}/product/${product.metadata.slug}`,
-        lastModified: new Date(product.updated * 1000),
+        url: `${env.NEXT_PUBLIC_URL}/product/${metadata.slug}`,
+        lastModified: new Date(updated * 1000),
         changeFrequency: 'daily',
         priority: 0.8,
       }) satisfies Item,
   );
 
-  const categoryUrls = Categories.map(
-    (category) =>
+  const categoryUrls = categories.map(
+    ({ slug }) =>
       ({
-        url: `${env.NEXT_PUBLIC_URL}/category/${category.slug}`,
+        url: `${env.NEXT_PUBLIC_URL}/category/${slug}`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.5,
@@ -40,4 +42,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...productUrls,
     ...categoryUrls,
   ];
-}
+};
+
+export default Sitemap;

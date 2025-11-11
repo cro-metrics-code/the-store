@@ -2,7 +2,7 @@
 
 import { getCartFromCookiesAction } from '@/actions/cart-actions';
 import type { AddressSchema } from '@/ui/checkout/checkout-form-schema';
-import * as Commerce from 'commerce-kit';
+import { cartSaveBillingAddress, cartSaveShipping } from 'commerce-kit';
 
 export const saveShippingRateAction = async ({
   shippingRateId,
@@ -18,7 +18,7 @@ export const saveShippingRateAction = async ({
     throw new Error('Invalid shipping rate id');
   }
 
-  await Commerce.cartSaveShipping({ cartId: cart.cart.id, shippingRateId });
+  await cartSaveShipping({ cartId: cart.cart.id, shippingRateId });
 };
 
 export const saveBillingAddressAction = async ({
@@ -31,7 +31,7 @@ export const saveBillingAddressAction = async ({
     throw new Error('No cart id found in cookies');
   }
 
-  await Commerce.cartSaveBillingAddress({
+  await cartSaveBillingAddress({
     cartId: cart.cart.id,
     billingAddress,
   });

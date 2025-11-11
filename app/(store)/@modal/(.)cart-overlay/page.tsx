@@ -2,18 +2,21 @@ import { getCartFromCookiesAction } from '@/actions/cart-actions';
 import { formatMoney, formatProductName } from '@/lib/utils';
 import { PrefetchLink } from '@/ui/prefetch-link';
 import { Button } from '@/ui/shadcn/button';
-import * as Commerce from 'commerce-kit';
-import { calculateCartTotalNetWithoutShipping } from 'commerce-kit';
+import {
+  calculateCartTotalNetWithoutShipping,
+  cartAddOptimistic,
+} from 'commerce-kit';
 import Image from 'next/image';
 import { CartAsideContainer } from './cart-aside';
 import { CartModalAddSideEffect } from './cart-side-effect';
+import { CartViewedTracker } from './cart-viewed-tracker';
 
-export default async function CartModalPage(props: {
+const CartModalPage = async (props: {
   searchParams: Promise<{ add?: string }>;
-}) {
+}) => {
   const searchParams = await props.searchParams;
   const originalCart = await getCartFromCookiesAction();
-  const cart = await Commerce.cartAddOptimistic({
+  const cart = await cartAddOptimistic({
     add: searchParams.add,
     cart: originalCart,
   });
@@ -108,6 +111,9 @@ export default async function CartModalPage(props: {
       {searchParams.add && (
         <CartModalAddSideEffect productId={searchParams.add} />
       )}
+      {!searchParams.add && <CartViewedTracker cart={cart} />}
     </CartAsideContainer>
   );
-}
+};
+
+export default CartModalPage;

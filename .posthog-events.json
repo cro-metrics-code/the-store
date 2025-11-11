@@ -1,0 +1,67 @@
+[
+  {
+    "eventName": "product_added_to_cart",
+    "description": "User adds a product to their shopping cart",
+    "filePath": "app/(store)/@modal/(.)cart-overlay/cart-side-effect.tsx"
+  },
+  {
+    "eventName": "cart_item_quantity_increased",
+    "description": "User increases the quantity of an item in cart",
+    "filePath": "actions/cart-actions.ts"
+  },
+  {
+    "eventName": "cart_item_quantity_decreased",
+    "description": "User decreases the quantity of an item in cart",
+    "filePath": "actions/cart-actions.ts"
+  },
+  {
+    "eventName": "checkout_started",
+    "description": "User views the checkout page to begin payment process",
+    "filePath": "app/(store)/cart/page.tsx"
+  },
+  {
+    "eventName": "payment_submitted",
+    "description": "User submits payment form during checkout",
+    "filePath": "ui/checkout/stripe-payment.tsx"
+  },
+  {
+    "eventName": "order_completed",
+    "description": "User successfully completes an order and reaches success page",
+    "filePath": "app/(store)/order/success/page.tsx"
+  },
+  {
+    "eventName": "product_viewed",
+    "description": "User views a product detail page",
+    "filePath": "app/(store)/product/[slug]/page.tsx"
+  },
+  {
+    "eventName": "search_performed",
+    "description": "User performs a product search",
+    "filePath": "app/(store)/search/page.tsx"
+  },
+  {
+    "eventName": "newsletter_signup_submitted",
+    "description": "User submits email for newsletter signup",
+    "filePath": "ui/footer/newsletter.client.tsx"
+  },
+  {
+    "eventName": "shipping_method_selected",
+    "description": "User selects a shipping method during checkout",
+    "filePath": "ui/checkout/checkout-actions.tsx"
+  },
+  {
+    "eventName": "cart_viewed",
+    "description": "User opens the cart overlay to view cart contents",
+    "filePath": "app/(store)/@modal/(.)cart-overlay/page.tsx"
+  },
+  {
+    "eventName": "payment_failed",
+    "description": "Payment submission fails with an error",
+    "filePath": "ui/checkout/stripe-payment.tsx"
+  },
+  {
+    "eventName": "error_occurred",
+    "description": "Application error is displayed to user",
+    "filePath": "app/error.tsx"
+  }
+]

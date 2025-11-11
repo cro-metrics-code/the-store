@@ -3,7 +3,7 @@
 import { Drawer, DrawerContent, DrawerTitle } from '@/ui/shadcn/drawer';
 import { useMediaQuery } from '@/ui/shadcn/hooks/use-media-query';
 import { useRouter } from 'next/navigation';
-import { type ReactNode, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 export const CartAsideDrawer = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(true);

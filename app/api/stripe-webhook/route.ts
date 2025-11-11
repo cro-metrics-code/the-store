@@ -1,10 +1,10 @@
-import { env } from '@/env/server';
+import { env } from '@/env';
 import { unpackPromise } from '@/lib/utils';
-import * as Commerce from 'commerce-kit';
+import { getProductsFromMetadata, provider } from 'commerce-kit';
 import { cartMetadataSchema } from 'commerce-kit/internal';
 import { revalidateTag } from 'next/cache';
 
-export async function POST(request: Request) {
+const POST = async (request: Request) => {
   if (!env.STRIPE_WEBHOOK_SECRET) {
     return new Response('STRIPE_WEBHOOK_SECRET is not configured', {
       status: 500,
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     return new Response('No signature', { status: 401 });
   }
 
-  const stripe = Commerce.provider({
+  const stripe = provider({
     tagPrefix: undefined,
     secretKey: undefined,
     cache: 'no-store',
@@ -48,7 +48,7 @@ export async function POST(request: Request) {
         });
       }
 
-      const products = await Commerce.getProductsFromMetadata(metadata);
+      const products = await getProductsFromMetadata(metadata);
 
       for (const { product } of products) {
         if (product && product.metadata.stock !== Number.POSITIVE_INFINITY) {
@@ -70,4 +70,6 @@ export async function POST(request: Request) {
       console.log(`Unhandled event type: ${event.type}`);
   }
   return Response.json({ received: true });
-}
+};
+
+export default POST;

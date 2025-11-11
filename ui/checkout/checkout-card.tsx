@@ -8,7 +8,7 @@ import p24 from '@/images/payments/p24.svg';
 import visa from '@/images/payments/visa.svg';
 import { isDefined } from '@/lib/utils';
 import { StripePayment } from '@/ui/checkout/stripe-payment';
-import * as Commerce from 'commerce-kit';
+import { shippingBrowse, type Cart } from 'commerce-kit';
 
 export const paymentMethods = {
   amex,
@@ -21,8 +21,8 @@ export const paymentMethods = {
   visa,
 };
 
-export const CheckoutCard = async ({ cart }: { cart: Commerce.Cart }) => {
-  const shippingRates = await Commerce.shippingBrowse();
+export const CheckoutCard = async ({ cart }: { cart: Cart }) => {
+  const shippingRates = await shippingBrowse();
 
   return (
     <section className="max-w-md pb-12">

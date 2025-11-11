@@ -1,8 +1,8 @@
 'use client';
 
-import * as React from 'react';
 import { Command as CommandPrimitive } from 'cmdk';
 import { SearchIcon } from 'lucide-react';
+import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 import {
@@ -90,7 +90,7 @@ function CommandList({
     <CommandPrimitive.List
       data-slot="command-list"
       className={cn(
-        'max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto',
+        'max-h-75 scroll-py-1 overflow-x-hidden overflow-y-auto',
         className,
       )}
       {...props}
@@ -174,11 +174,11 @@ function CommandShortcut({
 export {
   Command,
   CommandDialog,
-  CommandInput,
-  CommandList,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
-  CommandShortcut,
+  CommandList,
   CommandSeparator,
+  CommandShortcut,
 };

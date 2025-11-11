@@ -1,14 +1,16 @@
 onlyBuiltDependencies:
   - '@vercel/speed-insights'
+  - core-js
   - esbuild
   - msw
   - sharp
   - unrs-resolver
+
 peerDependencyRules:
-  allowedVersions:
-    react: 19.2.0
-    react-dom: 19.2.0
-    next: 16.0.1
   allowAny:
     - '@types/react'
     - '@types/react-dom'
+  allowedVersions:
+    next: 16.0.1
+    react: 19.2.0
+    react-dom: 19.2.0

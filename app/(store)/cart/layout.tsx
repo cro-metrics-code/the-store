@@ -1,21 +1,16 @@
 import { getCartFromCookiesAction } from '@/actions/cart-actions';
-import * as Commerce from 'commerce-kit';
-import type { ReactNode } from 'react';
-
 import { CartEmpty } from '@/ui/checkout/cart-empty';
 import { CartSummaryTable } from '@/ui/checkout/cart-summary-table';
 import { StripeElementsContainer } from '@/ui/checkout/stripe-elements-container';
+import { contextGet } from 'commerce-kit';
+import type { ReactNode } from 'react';
 
-export default async function CartLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+const CartLayout = async ({ children }: { children: ReactNode }) => {
   const cart = await getCartFromCookiesAction();
   if (!cart?.cart.client_secret || cart.lines.length === 0) {
     return <CartEmpty />;
   }
-  const { stripeAccount, publishableKey } = await Commerce.contextGet();
+  const { stripeAccount, publishableKey } = await contextGet();
 
   return (
     <StripeElementsContainer
@@ -36,4 +31,6 @@ export default async function CartLayout({
       </div>
     </StripeElementsContainer>
   );
-}
+};
+
+export default CartLayout;

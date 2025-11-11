@@ -41,13 +41,6 @@
   --breakpoint-xs: 520px;
   --breakpoint-smb: 720px;
 
-  --spacing-1\/5: 20%;
-  --spacing-2\/5: 40%;
-  --spacing-3\/5: 60%;
-  --spacing-4\/5: 80%;
-  --spacing-95\%: 95%;
-  --spacing-90\%: 90%;
-
   @keyframes accordion-down {
     from {
       height: 0;

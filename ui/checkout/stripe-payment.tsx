@@ -7,8 +7,8 @@ import {
   saveShippingRateAction,
 } from '@/ui/checkout/checkout-actions';
 import {
-  type AddressSchema,
   getAddressSchema,
+  type AddressSchema,
 } from '@/ui/checkout/checkout-form-schema';
 import { ShippingRatesSection } from '@/ui/checkout/shipping-rates-section';
 import { saveTaxIdAction } from '@/ui/checkout/tax-action';
@@ -26,15 +26,16 @@ import {
   useElements,
   useStripe,
 } from '@stripe/react-stripe-js';
-import type * as Commerce from 'commerce-kit';
+import type { MappedShippingRate } from 'commerce-kit';
 import { AlertCircle, Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { usePostHog } from 'posthog-js/react';
 import {
-  type ChangeEvent,
-  type FormEventHandler,
   useEffect,
   useState,
   useTransition,
+  type ChangeEvent,
+  type FormEventHandler,
 } from 'react';
 
 export const StripePayment = ({
@@ -43,7 +44,7 @@ export const StripePayment = ({
   allProductsDigital,
 }: {
   shippingRateId?: string | null;
-  shippingRates: Commerce.MappedShippingRate[];
+  shippingRates: MappedShippingRate[];
   allProductsDigital: boolean;
 }) => {
   return (
@@ -60,7 +61,7 @@ const PaymentForm = ({
   cartShippingRateId,
   allProductsDigital,
 }: {
-  shippingRates: Commerce.MappedShippingRate[];
+  shippingRates: MappedShippingRate[];
   cartShippingRateId: string | null;
   allProductsDigital: boolean;
 }) => {
@@ -109,6 +110,7 @@ const PaymentForm = ({
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
+  const posthog = usePostHog();
 
   useEffect(() => {
     transition(async () => {
@@ -187,6 +189,14 @@ const PaymentForm = ({
           taxId: validatedBillingAddress.data.taxId,
         });
       }
+
+      // Track payment submission
+      posthog?.capture('payment_submitted', {
+        billing_country: validatedBillingAddress.data.country,
+        shipping_country: validatedShippingAddress.data.country,
+        has_tax_id: !!validatedBillingAddress.data.taxId,
+      });
+
       const result = await stripe.confirmPayment({
         elements,
         redirect: 'if_required',
@@ -226,6 +236,12 @@ const PaymentForm = ({
         setFormErrorMessage(
           result.error.message ?? 'An unexpected error occurred.',
         );
+        // Track payment failure
+        posthog?.capture('payment_failed', {
+          error_message: result.error.message,
+          error_type: result.error.type,
+          error_code: result.error.code,
+        });
       } else {
         // clear cart cookie after successful payment for payment methods that do not require redirect
         // for payment methods that require redirect, we clear the cookie on the success page
@@ -241,11 +257,16 @@ const PaymentForm = ({
       }
     } catch (error) {
       setIsLoading(false);
-      setFormErrorMessage(
+      const errorMessage =
         error instanceof Error ?
           error.message
-        : 'An unexpected error occurred.',
-      );
+        : 'An unexpected error occurred.';
+      setFormErrorMessage(errorMessage);
+      // Track payment failure
+      posthog?.capture('payment_failed', {
+        error_message: errorMessage,
+        error_type: 'exception',
+      });
     }
   };
 
@@ -253,6 +274,11 @@ const PaymentForm = ({
     <form onSubmit={handleSubmit} className="grid gap-4">
       <LinkAuthenticationElement
         onReady={() => setIsLinkAuthenticationReady(true)}
+        onChange={(e) => {
+          if (e.value.email) {
+            posthog?.identify(e.value.email, { email: e.value.email });
+          }
+        }}
       />
       <AddressElement
         options={{
@@ -285,6 +311,17 @@ const PaymentForm = ({
       {readyToRender && !allProductsDigital && (
         <ShippingRatesSection
           onChange={(value) => {
+            const selectedRate = shippingRates.find(
+              (rate) => rate.id === value,
+            );
+            if (selectedRate) {
+              posthog?.capture('shipping_method_selected', {
+                shipping_rate_id: selectedRate.id,
+                shipping_method: selectedRate.display_name,
+                shipping_cost: selectedRate.fixed_amount?.amount,
+                currency: selectedRate.fixed_amount?.currency,
+              });
+            }
             transition(async () => {
               setShippingRateId(value);
               await saveShippingRateAction({ shippingRateId: value });

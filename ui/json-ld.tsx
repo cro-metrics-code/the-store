@@ -1,5 +1,5 @@
 import { formatProductName } from '@/lib/utils';
-import type * as Commerce from 'commerce-kit';
+import type { MappedProduct } from 'commerce-kit';
 import { getDecimalFromStripeAmount } from 'commerce-kit/currencies';
 import type {
   ItemList,
@@ -22,7 +22,7 @@ export const JsonLd = <T extends Thing>({
 );
 
 export const mappedProductToJsonLd = (
-  product: Commerce.MappedProduct,
+  product: MappedProduct,
 ): WithContext<Product> => {
   const productName = formatProductName(product.name, product.metadata.variant);
 
@@ -49,7 +49,7 @@ export const mappedProductToJsonLd = (
 };
 
 export const mappedProductsToJsonLd = (
-  products: readonly Commerce.MappedProduct[],
+  products: readonly MappedProduct[],
 ): WithContext<ItemList> => ({
   '@context': 'https://schema.org',
   '@type': 'ItemList',

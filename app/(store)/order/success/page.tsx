@@ -4,10 +4,11 @@ import { formatMoney, formatProductName } from '@/lib/utils';
 import { paymentMethods } from '@/ui/checkout/checkout-card';
 import { ClearCookieClientComponent } from '@/ui/checkout/clear-cookie-client-component';
 import { Markdown } from '@/ui/markdown';
-import * as Commerce from 'commerce-kit';
+import { orderGet, type Order } from 'commerce-kit';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Fragment } from 'react';
+import { OrderCompletedTracker } from './order-completed-tracker';
 import { PaymentStatus } from './payment-status';
 
 export const generateMetadata = async (): Promise<Metadata> => {
@@ -29,14 +30,14 @@ const OrderDetailsPage = async (props: {
   ) {
     return <div>Invalid order details</div>;
   }
-  const order = await Commerce.orderGet(searchParams.payment_intent);
+  const order = await orderGet(searchParams.payment_intent);
 
   if (!order) {
     return <div>Order not found</div>;
   }
   const cookie = await getCartCookieJson();
 
-  const isDigital = (lines: Commerce.Order['lines']) => {
+  const isDigital = (lines: Order['lines']) => {
     return lines.some(({ product }) => Boolean(product.metadata.digitalAsset));
   };
 
@@ -46,6 +47,7 @@ const OrderDetailsPage = async (props: {
         cartId={order.order.id}
         cookieId={cookie?.id}
       />
+      <OrderCompletedTracker order={order} />
       <h1 className="mt-4 inline-flex items-center text-3xl leading-none font-bold tracking-tight">
         Order Confirmation
         <PaymentStatus status={order.order.status} />

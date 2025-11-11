@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { MainProductImage } from '@/ui/products/main-product-image';
-import type * as Commerce from 'commerce-kit';
+import type { MappedProduct } from 'commerce-kit';
 import { formatMoney } from 'commerce-kit/currencies';
 import { AddToCartButton } from './add-to-cart-button';
 
@@ -8,16 +8,16 @@ export const ProductBottomStickyCard = ({
   product,
   show,
 }: {
-  product: Commerce.MappedProduct;
+  product: MappedProduct;
   show: boolean;
 }) => (
   <div
     tabIndex={show ? 0 : -1}
     className={cn(
-      'fixed right-0 bottom-0 left-0 z-10 max-w-[100vw] border-t bg-white/90 py-2 backdrop-blur-sm transition-all duration-300 ease-out sm:py-4',
+      'fixed right-0 bottom-0 left-0 z-10 max-w-dvw transform border-t bg-white/90 py-2 backdrop-blur-sm transition-all duration-300 ease-out sm:py-4',
       show ?
-        'translate-y-0 transform shadow-[0_-4px_6px_-1px_rgb(0_0_0/0.1),0_-2px_4px_-2px_rgb(0_0_0/0.1)]'
-      : 'translate-y-full transform',
+        'translate-y-0 shadow-[0_-4px_6px_-1px_rgb(0_0_0/0.1),0_-2px_4px_-2px_rgb(0_0_0/0.1)]'
+      : 'translate-y-full',
     )}
   >
     <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-x-2 px-4 sm:px-6 lg:px-8">

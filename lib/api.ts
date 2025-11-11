@@ -1,2 +1,1 @@
-import * as Search from './search/search';
-export { Search };
+export { searchProducts } from './search/search';

@@ -4,22 +4,20 @@ import { Footer } from '@/ui/footer/footer';
 import { JsonLd, accountToWebsiteJsonLd } from '@/ui/json-ld';
 import { Nav } from '@/ui/nav/nav';
 import { TooltipProvider } from '@/ui/shadcn/tooltip';
-import * as Commerce from 'commerce-kit';
+import { accountGet, fileGet } from 'commerce-kit';
 import type { ReactNode } from 'react';
 
-export default async function StoreLayout({
+const StoreLayout = async ({
   children,
   modal,
 }: Readonly<{
   children: ReactNode;
   modal: ReactNode;
-}>) {
-  const accountResult = await Commerce.accountGet();
+}>) => {
+  const accountResult = await accountGet();
   const logoLink =
     accountResult?.logo?.links?.data.find((link) => !link.expired) ||
-    (accountResult?.logo?.id ?
-      await Commerce.fileGet(accountResult.logo.id)
-    : null);
+    (accountResult?.logo?.id ? await fileGet(accountResult.logo.id) : null);
 
   return (
     <>
@@ -40,4 +38,6 @@ export default async function StoreLayout({
       />
     </>
   );
-}
+};
+
+export default StoreLayout;

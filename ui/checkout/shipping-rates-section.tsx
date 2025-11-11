@@ -1,6 +1,6 @@
 import { cn, formatMoney } from '@/lib/utils';
 import { RadioGroup, RadioGroupItem } from '@/ui/shadcn/radio-group';
-import type * as Commerce from 'commerce-kit';
+import type { MappedShippingRate } from 'commerce-kit';
 import { useOptimistic, useTransition } from 'react';
 import type Stripe from 'stripe';
 
@@ -9,7 +9,7 @@ export const ShippingRatesSection = ({
   value,
   onChange,
 }: {
-  shippingRates: Commerce.MappedShippingRate[];
+  shippingRates: MappedShippingRate[];
   value: string | null | undefined;
   onChange: (value: string) => void;
 }) => {
@@ -68,7 +68,7 @@ export const ShippingRatesSection = ({
 export const FormatDeliveryEstimate = ({
   estimate,
 }: {
-  estimate: Commerce.MappedShippingRate['delivery_estimate'];
+  estimate: MappedShippingRate['delivery_estimate'];
 }) => {
   if (!estimate?.minimum && !estimate?.maximum) {
     return null;

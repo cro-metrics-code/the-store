@@ -47,7 +47,7 @@ export function CountrySelect({
                   <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-[200px] p-0" align="start">
+              <PopoverContent className="w-50 p-0" align="start">
                 <CountryList
                   setOpen={setOpen}
                   setSelectedCountry={(c) => onChangeValue?.(c?.value ?? '')}
@@ -60,7 +60,7 @@ export function CountrySelect({
         return (
           <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>
-              <Button variant="outline" className="w-[150px] justify-start">
+              <Button variant="outline" className="w-37.5 justify-start">
                 {selectedCountry ?
                   <>{selectedCountry.label}</>
                 : <>+ Set status</>}

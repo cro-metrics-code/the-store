@@ -1,15 +1,14 @@
 'use client';
-import type * as Commerce from 'commerce-kit';
-import { type ReactNode, useEffect, useState } from 'react';
+import type { MappedProduct } from 'commerce-kit';
+import { useEffect, useState, type ReactNode } from 'react';
 import { ProductBottomStickyCard } from './product-bottom-sticky-card';
 
-export const StickyBottom = ({
-  children,
-  product,
-}: Readonly<{
+interface StickyBottomProps {
   children: ReactNode;
-  product: Commerce.MappedProduct;
-}>) => {
+  product: MappedProduct;
+}
+
+export const StickyBottom = ({ children, product }: StickyBottomProps) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {

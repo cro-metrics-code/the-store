@@ -9,7 +9,7 @@ import {
   DrawerTrigger,
 } from '@/ui/shadcn/drawer';
 import { MenuIcon } from 'lucide-react';
-import { type ReactNode, useState } from 'react';
+import { useState, type ReactNode } from 'react';
 
 export const NavMobileMenu = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,19 +1,19 @@
-import { env } from '@/env/client';
+import { env } from '@/env';
 import AccessoriesImage from '@/images/accessories.jpg';
 import ApparelImage from '@/images/apparel.jpg';
 import { CategoryBox } from '@/ui/category-box';
 import { PrefetchLink } from '@/ui/prefetch-link';
 import { ProductList } from '@/ui/products/product-list';
-import * as Commerce from 'commerce-kit';
+import { productBrowse } from 'commerce-kit';
 import Image from 'next/image';
 import type { Metadata } from 'next/types';
 
-export const metadata = {
+export const metadata: Metadata = {
   alternates: { canonical: env.NEXT_PUBLIC_URL },
-} satisfies Metadata;
+};
 
-export default async function Home() {
-  const products = await Commerce.productBrowse({ first: 6 });
+const Home = async () => {
+  const products = await productBrowse({ first: 6 });
 
   return (
     <main>
@@ -68,4 +68,6 @@ export default async function Home() {
       </section>
     </main>
   );
-}
+};
+
+export default Home;

@@ -1,6 +1,6 @@
-import { env } from '@/env/client';
+import { env } from '@/env';
 import { ProductList } from '@/ui/products/product-list';
-import * as Commerce from 'commerce-kit';
+import { productBrowse } from 'commerce-kit';
 import type { Metadata } from 'next/types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
@@ -10,8 +10,8 @@ export const generateMetadata = async (): Promise<Metadata> => {
   };
 };
 
-export default async function AllProductsPage() {
-  const products = await Commerce.productBrowse({ first: 100 });
+const AllProductsPage = async () => {
+  const products = await productBrowse({ first: 100 });
 
   return (
     <main className="pb-8">
@@ -21,4 +21,6 @@ export default async function AllProductsPage() {
       <ProductList products={products} />
     </main>
   );
-}
+};
+
+export default AllProductsPage;

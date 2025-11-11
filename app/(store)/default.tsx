@@ -1,3 +1,5 @@
-export default function ModalCartDefault() {
+const ModalCartDefault = () => {
   return null;
-}
+};
+
+export default ModalCartDefault;

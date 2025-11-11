@@ -1,67 +1,54 @@
-import type * as Commerce from 'commerce-kit';
+import type { MappedProduct } from 'commerce-kit';
 
-const NO_MATCH = 0;
-const EXACT_MATCH = 5;
-const EXACT_WORD_MULTIPLIER = 2;
-
-// https://stackoverflow.com/a/9310752
-const escapeRegExp = (text: string) =>
-  text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-
-const simpleSearchMatch = (
-  query: string,
-  value: null | undefined | string,
-): number => {
+const simpleSearchMatch = (query: string, value: null | undefined | string) => {
   if (!value) {
-    return NO_MATCH;
+    return 0;
   }
   if (value === query) {
-    return EXACT_MATCH;
+    return 5;
   }
 
   const allWords = value.split(' ').length || 1;
-  const exactRegExp = new RegExp(`\\b${query}\\b`, 'ig');
-  const includesRegExp = new RegExp(query, 'ig');
+  const exactRegEx = new RegExp(`\\b${query}\\b`, 'ig');
+  const includesRegEx = new RegExp(query, 'ig');
 
-  const exactWordOccurrences = [...value.toString().matchAll(exactRegExp)]
+  const exactOccurrences = [...value.toString().matchAll(exactRegEx)].length;
+  const includesOccurrences = [...value.toString().matchAll(includesRegEx)]
     .length;
-  const includesOccurrences = [...value.toString().matchAll(includesRegExp)]
-    .length;
-  return (
-    (EXACT_WORD_MULTIPLIER * exactWordOccurrences + includesOccurrences) /
-    allWords
-  );
+
+  return (2 * exactOccurrences + includesOccurrences) / allWords;
 };
 
-export const simpleSearch = (
-  products: Commerce.MappedProduct[],
-  query: string,
-) => {
-  const escapedQuery = escapeRegExp(query);
-  const matches = products
-    .flatMap((product) => {
-      const fieldsWithWeights = [
-        [product.name, 1.5],
-        [product.description, 1],
-        [product.metadata.slug, 1],
-        [product.metadata.category, 1],
-        [product.metadata.variant, 1],
-      ] as const;
+export const simpleSearch = (products: MappedProduct[], query: string) =>
+  products
+    .flatMap(
+      ({ description, id, metadata: { category, slug, variant }, name }) => {
+        const fieldsWithWeights = [
+          [name, 1.5],
+          [description, 1],
+          [slug, 1],
+          [category, 1],
+          [variant, 1],
+        ] as const;
 
-      const score = fieldsWithWeights
-        .map(([field, weight]) => {
-          return weight * simpleSearchMatch(escapedQuery, field);
-        })
-        .reduce((score, match) => score + match, 0);
+        const score = fieldsWithWeights
+          .map(
+            ([field, weight]) =>
+              weight *
+              simpleSearchMatch(
+                query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'),
+                field,
+              ),
+          )
+          .reduce((score, match) => score + match, 0);
 
-      if (score > 0) {
-        return { id: product.id, score };
-      }
-      return [];
-    })
-    .sort((a, b) => {
-      return b.score - a.score;
-    });
-
-  return matches;
-};
+        if (score > 0) {
+          return {
+            id,
+            score,
+          };
+        }
+        return [];
+      },
+    )
+    .sort((a, b) => b.score - a.score);

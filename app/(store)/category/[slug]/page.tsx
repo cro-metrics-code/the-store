@@ -1,7 +1,7 @@
-import { env } from '@/env/client';
+import { env } from '@/env';
 import { deslugify } from '@/lib/utils';
 import { ProductList } from '@/ui/products/product-list';
-import * as Commerce from 'commerce-kit';
+import { productBrowse } from 'commerce-kit';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next/types';
 
@@ -9,7 +9,7 @@ export const generateMetadata = async (props: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> => {
   const params = await props.params;
-  const products = await Commerce.productBrowse({
+  const products = await productBrowse({
     first: 100,
     filter: { category: params.slug },
   });
@@ -24,11 +24,13 @@ export const generateMetadata = async (props: {
   };
 };
 
-export default async function CategoryPage(props: {
+interface CategoryPageProps {
   params: Promise<{ slug: string }>;
-}) {
+}
+
+const CategoryPage = async (props: CategoryPageProps) => {
   const params = await props.params;
-  const products = await Commerce.productBrowse({
+  const products = await productBrowse({
     first: 100,
     filter: { category: params.slug },
   });
@@ -48,4 +50,6 @@ export default async function CategoryPage(props: {
       <ProductList products={products} />
     </main>
   );
-}
+};
+
+export default CategoryPage;

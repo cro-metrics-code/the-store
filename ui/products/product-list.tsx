@@ -1,13 +1,13 @@
 import { formatMoney } from '@/lib/utils';
 import { JsonLd, mappedProductsToJsonLd } from '@/ui/json-ld';
 import { PrefetchLink } from '@/ui/prefetch-link';
-import type * as Commerce from 'commerce-kit';
+import type { MappedProduct } from 'commerce-kit';
 import Image from 'next/image';
 
 export const ProductList = async ({
   products,
 }: {
-  products: Commerce.MappedProduct[];
+  products: MappedProduct[];
 }) => (
   <>
     <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

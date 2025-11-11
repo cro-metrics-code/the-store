@@ -1,8 +1,8 @@
 import { cn } from '@/lib/utils';
 import { Input } from '@/ui/shadcn/input';
 import { Label } from '@/ui/shadcn/label';
-import { type ReactNode, useMemo } from 'react';
 import type { InputHTMLAttributes } from 'react';
+import { useMemo, type ReactNode } from 'react';
 
 type InputProps = InputHTMLAttributes<HTMLInputElement>;
 

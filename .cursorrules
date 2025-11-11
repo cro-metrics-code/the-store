@@ -77,7 +77,7 @@ Follow these rules when building the project.
 - @t3-oss/env-nextjs is used to add type safety and validation to environment variables and is located in `src/env/server.ts` (for server-side) and `src/env/client.ts` (for client-side)
 - After environmental variables have been added to `.env` and the appropriate `src/env/client.ts` or `src/env/server.ts` file, you may import environment variables as follows:
   - `import { env } from '@/env/server';` for server components and server actions
-  - `import { env } from '@/env/client';` for client components
+  - `import { env } from '@/env';` for client components
 
 #### Type Rules
 

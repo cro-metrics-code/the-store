@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import defaultScreens from 'tailwindcss/defaultTheme';
 
 type Screens = typeof defaultScreens.screens;
@@ -32,6 +32,7 @@ export const useBreakpoint = (
 
     handler();
     query.addEventListener('change', handler);
+
     return () => {
       query.removeEventListener('change', handler);
     };

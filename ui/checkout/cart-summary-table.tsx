@@ -21,11 +21,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/ui/shadcn/table';
-import type * as Commerce from 'commerce-kit';
+import type { Cart } from 'commerce-kit';
 import Image from 'next/image';
 import { useOptimistic } from 'react';
 
-export const CartSummaryTable = ({ cart }: { cart: Commerce.Cart }) => {
+export const CartSummaryTable = ({ cart }: { cart: Cart }) => {
   const [optimisticCart, dispatchOptimisticCartAction] = useOptimistic(
     cart,
     (

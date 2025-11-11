@@ -1,12 +1,12 @@
-import { env } from '@/env/client';
+import { env } from '@/env';
 
 import { cn, deslugify, formatMoney, formatProductName } from '@/lib/utils';
 
 import { AddToCartButton } from '@/ui/add-to-cart-button';
 import { JsonLd, mappedProductToJsonLd } from '@/ui/json-ld';
 import { Markdown } from '@/ui/markdown';
-import { MainProductImage } from '@/ui/products/main-product-image';
 import { PrefetchLink } from '@/ui/prefetch-link';
+import { MainProductImage } from '@/ui/products/main-product-image';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -16,10 +16,11 @@ import {
   BreadcrumbSeparator,
 } from '@/ui/shadcn/breadcrumb';
 import { StickyBottom } from '@/ui/sticky-bottom';
-import * as Commerce from 'commerce-kit';
+import { productGet } from 'commerce-kit';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next/types';
+import { ProductViewedTracker } from './product-viewed-tracker';
 
 export const generateMetadata = async (props: {
   params: Promise<{ slug: string }>;
@@ -27,7 +28,7 @@ export const generateMetadata = async (props: {
 }): Promise<Metadata> => {
   const searchParams = await props.searchParams;
   const params = await props.params;
-  const variants = await Commerce.productGet({ slug: params.slug });
+  const variants = await productGet({ slug: params.slug });
 
   const selectedVariant = searchParams.variant || variants[0]?.metadata.variant;
   const product = variants.find(
@@ -53,13 +54,15 @@ export const generateMetadata = async (props: {
   } satisfies Metadata;
 };
 
-export default async function SingleProductPage(props: {
+interface SingleProductPageProps {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ variant?: string }>;
-}) {
+}
+
+const SingleProductPage = async (props: SingleProductPageProps) => {
   const searchParams = await props.searchParams;
   const params = await props.params;
-  const variants = await Commerce.productGet({ slug: params.slug });
+  const variants = await productGet({ slug: params.slug });
   const selectedVariant = searchParams.variant || variants[0]?.metadata.variant;
   const product = variants.find(
     (variant) => variant.metadata.variant === selectedVariant,
@@ -73,6 +76,7 @@ export default async function SingleProductPage(props: {
 
   return (
     <article className="pb-12">
+      <ProductViewedTracker product={product} />
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -215,4 +219,6 @@ export default async function SingleProductPage(props: {
       <JsonLd jsonLd={mappedProductToJsonLd(product)} />
     </article>
   );
-}
+};
+
+export default SingleProductPage;
