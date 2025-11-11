@@ -27,4 +27,6 @@ const initPosthog = async () => {
   }
 };
 
-void initPosthog();
+if (typeof window !== 'undefined') {
+  void initPosthog();
+}
