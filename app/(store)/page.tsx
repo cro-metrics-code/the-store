@@ -17,12 +17,12 @@ const Home = async () => {
   const products = await productBrowse({ first: 6 });
 
   const bootstrapData = await getBootstrapData();
-  const flagValue = bootstrapData.featureFlags['homepage-hero'];
-  console.log('flagValue', flagValue);
+  const flagValue = bootstrapData.featureFlags['home-hero-heading'];
+
   const heroTitle =
     flagValue === 'v0' ?
-      'v0 Heading: Discover our Curated Collection'
-    : 'v1 Heading: Discover our New Collection';
+      'v0 Heading: Buy our stuff'
+    : `v1 Heading: Why haven't you bought our stuff yet?`;
 
   return (
     <main>
