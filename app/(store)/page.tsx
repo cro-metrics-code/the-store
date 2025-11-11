@@ -21,8 +21,8 @@ const Home = async () => {
 
   const heroTitle =
     flagValue === 'v1' ?
-      `v1 Heading: Why haven't you bought our stuff yet?`
-    : 'v0 Heading: Buy our stuff';
+      `Why haven't you bought our stuff yet?`
+    : 'Buy our stuff';
 
   return (
     <main>
