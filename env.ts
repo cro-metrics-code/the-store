@@ -17,7 +17,7 @@ export const env = createEnv({
     NEXT_PUBLIC_DEV_URL: z.string().url(),
     NEXT_PUBLIC_POSTHOG_KEY: z.string(),
     NEXT_PUBLIC_POSTHOG_HOST: z.string().url(),
-    NEXT_PUBLIC_NEWSLETTER_ENDPOINT: z.string().url(),
+    NEXT_PUBLIC_NEWSLETTER_ENDPOINT: z.string().url().optional(),
   },
   experimental__runtimeEnv: {
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:
