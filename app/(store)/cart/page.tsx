@@ -1,7 +1,7 @@
 import { getCartFromCookiesAction } from '@/actions/cart-actions';
 import { CheckoutCard } from '@/ui/checkout/checkout-card';
 import type { Metadata } from 'next/types';
-import { CheckoutStartedTracker } from './checkout-started-tracker';
+// import { CheckoutStartedTracker } from './checkout-started-tracker';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   return {
@@ -18,7 +18,7 @@ export default async function CartPage() {
   return (
     <>
       <CheckoutCard cart={cart} />
-      <CheckoutStartedTracker cart={cart} />
+      {/* <CheckoutStartedTracker cart={cart} /> */}
     </>
   );
 }

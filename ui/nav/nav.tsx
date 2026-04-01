@@ -6,7 +6,7 @@ import { SeoH1 } from '@/ui/seo-h1';
 
 export const Nav = async () => {
   return (
-    <header className="nav-border-reveal sticky top-0 z-50 bg-white/90 py-4 backdrop-blur-sm">
+    <header className="nav-border-reveal after:bg-neutral after:animate-nav-border-reveal sticky top-0 z-50 bg-white/90 py-4 backdrop-blur-sm after:absolute after:bottom-0 after:h-0.25 after:w-full after:content-[''] after:[animation-range:0_100px] after:[animation-timeline:scroll()]">
       <div className="mx-auto flex max-w-7xl flex-row items-center gap-2 px-4 sm:px-6 lg:px-8">
         <PrefetchLink href="/">
           <SeoH1 className="-mt-0.5 text-xl font-bold whitespace-nowrap">

@@ -5,7 +5,7 @@ import {
   getCartCookieJson,
   setCartCookieJson,
 } from '@/lib/cart';
-import PostHogClient from '@/lib/posthog';
+// import PostHogClient from '@/lib/posthog';
 import {
   cartAdd,
   cartChangeQuantity,
@@ -15,26 +15,26 @@ import {
   cartSetQuantity,
 } from 'commerce-kit';
 import { updateTag } from 'next/cache';
-import { cookies } from 'next/headers';
+// import { cookies } from 'next/headers';
 
 // Helper to get PostHog distinct ID from cookies
-const getDistinctId = async () => {
-  const cookieStore = await cookies();
-  const phCookie = cookieStore
-    .getAll()
-    .find((c) => c.name.startsWith('ph_') && c.name.endsWith('_posthog'));
-  if (phCookie?.value) {
-    try {
-      const parsed = JSON.parse(decodeURIComponent(phCookie.value)) as {
-        distinct_id?: string;
-      };
-      return parsed.distinct_id;
-    } catch {
-      return undefined;
-    }
-  }
-  return undefined;
-};
+// const getDistinctId = async () => {
+//   const cookieStore = await cookies();
+//   const phCookie = cookieStore
+//     .getAll()
+//     .find((c) => c.name.startsWith('ph_') && c.name.endsWith('_posthog'));
+//   if (phCookie?.value) {
+//     try {
+//       const parsed = JSON.parse(decodeURIComponent(phCookie.value)) as {
+//         distinct_id?: string;
+//       };
+//       return parsed.distinct_id;
+//     } catch {
+//       return undefined;
+//     }
+//   }
+//   return undefined;
+// };
 
 export const getCartFromCookiesAction = async () => {
   const cartJson = await getCartCookieJson();
@@ -91,12 +91,12 @@ export const addToCartAction = async (formData: FormData) => {
 };
 
 export const increaseQuantity = async (productId: string) => {
-  const posthogClient = PostHogClient();
+  // const posthogClient = PostHogClient();
   const cart = await getCartFromCookiesAction();
   if (!cart) throw new Error('Cart not found');
 
-  const product = cart.lines.find((line) => line.product.id === productId);
-  const oldQuantity = product?.quantity ?? 0;
+  // const product = cart.lines.find((line) => line.product.id === productId);
+  // const oldQuantity = product?.quantity ?? 0;
 
   await cartChangeQuantity({
     productId,
@@ -105,31 +105,31 @@ export const increaseQuantity = async (productId: string) => {
   });
 
   // Track quantity increase
-  if (product) {
-    const distinctId = await getDistinctId();
-    posthogClient.capture({
-      distinctId: distinctId ?? `anonymous-${cart.cart.id}`,
-      event: 'cart_item_quantity_increased',
-      properties: {
-        product_id: product.product.id,
-        product_name: product.product.name,
-        product_variant: product.product.metadata.variant,
-        old_quantity: oldQuantity,
-        new_quantity: oldQuantity + 1,
-        price: product.product.default_price.unit_amount,
-        currency: product.product.default_price.currency,
-      },
-    });
-  }
+  // if (product) {
+  //   const distinctId = await getDistinctId();
+  //   posthogClient.capture({
+  //     distinctId: distinctId ?? `anonymous-${cart.cart.id}`,
+  //     event: 'cart_item_quantity_increased',
+  //     properties: {
+  //       product_id: product.product.id,
+  //       product_name: product.product.name,
+  //       product_variant: product.product.metadata.variant,
+  //       old_quantity: oldQuantity,
+  //       new_quantity: oldQuantity + 1,
+  //       price: product.product.default_price.unit_amount,
+  //       currency: product.product.default_price.currency,
+  //     },
+  //   });
+  // }
 };
 
 export const decreaseQuantity = async (productId: string) => {
-  const posthogClient = PostHogClient();
+  // const posthogClient = PostHogClient();
   const cart = await getCartFromCookiesAction();
   if (!cart) throw new Error('Cart not found');
 
-  const product = cart.lines.find((line) => line.product.id === productId);
-  const oldQuantity = product?.quantity ?? 0;
+  // const product = cart.lines.find((line) => line.product.id === productId);
+  // const oldQuantity = product?.quantity ?? 0;
 
   await cartChangeQuantity({
     productId,
@@ -138,22 +138,22 @@ export const decreaseQuantity = async (productId: string) => {
   });
 
   // Track quantity decrease
-  if (product) {
-    const distinctId = await getDistinctId();
-    posthogClient.capture({
-      distinctId: distinctId ?? `anonymous-${cart.cart.id}`,
-      event: 'cart_item_quantity_decreased',
-      properties: {
-        product_id: product.product.id,
-        product_name: product.product.name,
-        product_variant: product.product.metadata.variant,
-        old_quantity: oldQuantity,
-        new_quantity: Math.max(0, oldQuantity - 1),
-        price: product.product.default_price.unit_amount,
-        currency: product.product.default_price.currency,
-      },
-    });
-  }
+  // if (product) {
+  //   const distinctId = await getDistinctId();
+  //   posthogClient.capture({
+  //     distinctId: distinctId ?? `anonymous-${cart.cart.id}`,
+  //     event: 'cart_item_quantity_decreased',
+  //     properties: {
+  //       product_id: product.product.id,
+  //       product_name: product.product.name,
+  //       product_variant: product.product.metadata.variant,
+  //       old_quantity: oldQuantity,
+  //       new_quantity: Math.max(0, oldQuantity - 1),
+  //       price: product.product.default_price.unit_amount,
+  //       currency: product.product.default_price.currency,
+  //     },
+  //   });
+  // }
 };
 
 export const setQuantity = async ({

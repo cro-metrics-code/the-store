@@ -40,7 +40,8 @@
     "postcss.config.mjs",
     ".next/dev/types/**/*.ts",
     "next.config.js",
-    "next.config.js"
+    "next.config.js",
+    "proxy.ts.bak"
   ],
   "exclude": ["node_modules", "src/script/**/*.ts"]
 }

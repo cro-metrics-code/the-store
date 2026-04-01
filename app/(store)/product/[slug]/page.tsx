@@ -20,7 +20,7 @@ import { productGet } from 'commerce-kit';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next/types';
-import { ProductViewedTracker } from './product-viewed-tracker';
+// import { ProductViewedTracker } from './product-viewed-tracker';
 
 export const generateMetadata = async (props: {
   params: Promise<{ slug: string }>;
@@ -76,7 +76,7 @@ const SingleProductPage = async (props: SingleProductPageProps) => {
 
   return (
     <article className="pb-12">
-      <ProductViewedTracker product={product} />
+      {/* <ProductViewedTracker product={product} /> */}
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

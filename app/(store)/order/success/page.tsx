@@ -8,7 +8,7 @@ import { orderGet, type Order } from 'commerce-kit';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Fragment } from 'react';
-import { OrderCompletedTracker } from './order-completed-tracker';
+// import { OrderCompletedTracker } from './order-completed-tracker';
 import { PaymentStatus } from './payment-status';
 
 export const generateMetadata = async (): Promise<Metadata> => {
@@ -47,7 +47,7 @@ const OrderDetailsPage = async (props: {
         cartId={order.order.id}
         cookieId={cookie?.id}
       />
-      <OrderCompletedTracker order={order} />
+      {/* <OrderCompletedTracker order={order} /> */}
       <h1 className="mt-4 inline-flex items-center text-3xl leading-none font-bold tracking-tight">
         Order Confirmation
         <PaymentStatus status={order.order.status} />

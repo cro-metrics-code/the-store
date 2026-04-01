@@ -37,7 +37,7 @@ export const getServerBootstrapData =
     const { PostHog } = await import('posthog-node');
 
     const client = new PostHog(env.NEXT_PUBLIC_POSTHOG_KEY, {
-      host: env.NEXT_PUBLIC_POSTHOG_HOST,
+      host: 'https://us.i.posthog.com',
     });
 
     const featureFlags = (await client.getAllFlags(distinctID)) as FeatureFlags;

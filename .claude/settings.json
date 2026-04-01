@@ -1,0 +1,59 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(pnpm *)",
+      "Edit",
+      "mcp__claude_ai_Context7__*",
+      "mcp__playwright__*",
+      "mcp__plugin_context7_*",
+      "Skill(update-config)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:registry.npmjs.org)",
+      "Write"
+    ],
+    "defaultMode": "acceptEdits",
+    "ask": ["Bash(git push *)"]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path' | { read -r f; npx prettier --write --ignore-unknown \"$f\"; } 2>/dev/null || true",
+            "timeout": 30,
+            "statusMessage": "Formatting..."
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path' | { read -r f; echo \"$f\" | grep -qE '\\.(ts|tsx)$' && npx eslint --fix \"$f\" 2>/dev/null || true; }",
+            "timeout": 30,
+            "statusMessage": "Linting..."
+          }
+        ]
+      }
+    ]
+  },
+  "sandbox": {
+    "allowUnsandboxedCommands": false,
+    "autoAllowBashIfSandboxed": true,
+    "enabled": true,
+    "excludedCommands": ["git", "pnpm"],
+    "filesystem": {
+      "allowWrite": ["~/Library/pnpm"]
+    },
+    "network": {
+      "allowedHosts": [
+        "registry.npmjs.org",
+        "github.com",
+        "vercel.com",
+        "nextjs.org",
+        "localhost",
+        "api.npmjs.org"
+      ],
+      "allowLocalBinding": true
+    }
+  }
+}

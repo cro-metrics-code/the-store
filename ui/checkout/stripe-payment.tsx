@@ -29,7 +29,7 @@ import {
 import type { MappedShippingRate } from 'commerce-kit';
 import { AlertCircle, Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { usePostHog } from 'posthog-js/react';
+// import { usePostHog } from 'posthog-js/react';
 import {
   useEffect,
   useState,
@@ -110,7 +110,7 @@ const PaymentForm = ({
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
-  const posthog = usePostHog();
+  // const posthog = usePostHog();
 
   useEffect(() => {
     transition(async () => {
@@ -191,11 +191,11 @@ const PaymentForm = ({
       }
 
       // Track payment submission
-      posthog?.capture('payment_submitted', {
-        billing_country: validatedBillingAddress.data.country,
-        shipping_country: validatedShippingAddress.data.country,
-        has_tax_id: !!validatedBillingAddress.data.taxId,
-      });
+      // posthog?.capture('payment_submitted', {
+      //   billing_country: validatedBillingAddress.data.country,
+      //   shipping_country: validatedShippingAddress.data.country,
+      //   has_tax_id: !!validatedBillingAddress.data.taxId,
+      // });
 
       const result = await stripe.confirmPayment({
         elements,
@@ -237,11 +237,11 @@ const PaymentForm = ({
           result.error.message ?? 'An unexpected error occurred.',
         );
         // Track payment failure
-        posthog?.capture('payment_failed', {
-          error_message: result.error.message,
-          error_type: result.error.type,
-          error_code: result.error.code,
-        });
+        // posthog?.capture('payment_failed', {
+        //   error_message: result.error.message,
+        //   error_type: result.error.type,
+        //   error_code: result.error.code,
+        // });
       } else {
         // clear cart cookie after successful payment for payment methods that do not require redirect
         // for payment methods that require redirect, we clear the cookie on the success page
@@ -263,10 +263,10 @@ const PaymentForm = ({
         : 'An unexpected error occurred.';
       setFormErrorMessage(errorMessage);
       // Track payment failure
-      posthog?.capture('payment_failed', {
-        error_message: errorMessage,
-        error_type: 'exception',
-      });
+      // posthog?.capture('payment_failed', {
+      //   error_message: errorMessage,
+      //   error_type: 'exception',
+      // });
     }
   };
 
@@ -276,7 +276,7 @@ const PaymentForm = ({
         onReady={() => setIsLinkAuthenticationReady(true)}
         onChange={(e) => {
           if (e.value.email) {
-            posthog?.identify(e.value.email, { email: e.value.email });
+            // posthog?.identify(e.value.email, { email: e.value.email });
           }
         }}
       />
@@ -315,12 +315,12 @@ const PaymentForm = ({
               (rate) => rate.id === value,
             );
             if (selectedRate) {
-              posthog?.capture('shipping_method_selected', {
-                shipping_rate_id: selectedRate.id,
-                shipping_method: selectedRate.display_name,
-                shipping_cost: selectedRate.fixed_amount?.amount,
-                currency: selectedRate.fixed_amount?.currency,
-              });
+              // posthog?.capture('shipping_method_selected', {
+              //   shipping_rate_id: selectedRate.id,
+              //   shipping_method: selectedRate.display_name,
+              //   shipping_cost: selectedRate.fixed_amount?.amount,
+              //   currency: selectedRate.fixed_amount?.currency,
+              // });
             }
             transition(async () => {
               setShippingRateId(value);
@@ -356,7 +356,7 @@ const PaymentForm = ({
         <Collapsible className="" open={!sameAsShipping}>
           <CollapsibleContent
             id="billingAddressCollapsibleContent"
-            className="CollapsibleContent"
+            className="data-[state=open]:animate-slide-down data-[state=closed]:animate-slide-up overflow-hidden"
           >
             <fieldset
               aria-hidden={sameAsShipping}

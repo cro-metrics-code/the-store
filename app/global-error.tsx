@@ -1,6 +1,6 @@
 'use client';
 
-import { usePostHog } from 'posthog-js/react';
+// import { usePostHog } from 'posthog-js/react';
 import { useEffect } from 'react';
 
 const GlobalError = ({
@@ -10,19 +10,19 @@ const GlobalError = ({
   error: Error & { digest?: string };
   reset: () => void;
 }) => {
-  const posthog = usePostHog();
+  // const posthog = usePostHog();
 
   useEffect(() => {
     console.error(error);
 
-    posthog.capture('error_occurred', {
-      error_message: error.message,
-      error_name: error.name,
-      error_stack: error.stack,
-      error_digest: error.digest,
-      page_url: window.location.href,
-    });
-  }, [error, posthog]);
+    // posthog.capture('error_occurred', {
+    //   error_message: error.message,
+    //   error_name: error.name,
+    //   error_stack: error.stack,
+    //   error_digest: error.digest,
+    //   page_url: window.location.href,
+    // });
+  }, [error]);
 
   return (
     <html lang="en">

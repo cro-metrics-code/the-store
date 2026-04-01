@@ -1,7 +1,7 @@
 import { env } from '@/env';
 import AccessoriesImage from '@/images/accessories.jpg';
 import ApparelImage from '@/images/apparel.jpg';
-import { getServerBootstrapData } from '@/lib/getServerBootstrapData';
+// import { getServerBootstrapData } from '@/lib/getServerBootstrapData';
 import { CategoryBox } from '@/ui/category-box';
 import { PrefetchLink } from '@/ui/prefetch-link';
 import { ProductList } from '@/ui/products/product-list';
@@ -16,13 +16,7 @@ export const metadata: Metadata = {
 const Home = async () => {
   const products = await productBrowse({ first: 6 });
 
-  const bootstrapData = await getServerBootstrapData();
-  const flagValue = bootstrapData.featureFlags['home-hero-heading'];
-
-  const heroTitle =
-    flagValue === 'v1' ?
-      `Why haven't you bought our stuff yet?`
-    : 'Buy our stuff';
+  const heroTitle = 'Buy our stuff';
 
   return (
     <main>

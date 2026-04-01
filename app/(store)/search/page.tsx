@@ -4,7 +4,7 @@ import { ProductList } from '@/ui/products/product-list';
 import { ProductNotFound } from '@/ui/products/product-not-found';
 import { RedirectType, redirect } from 'next/navigation';
 import type { Metadata } from 'next/types';
-import { SearchTracker } from './search-tracker';
+// import { SearchTracker } from './search-tracker';
 
 export const generateMetadata = async (props: {
   searchParams: Promise<{
@@ -34,7 +34,7 @@ const SearchPage = async (props: {
 
   return (
     <main>
-      <SearchTracker query={query} results={products} />
+      {/* <SearchTracker query={query} results={products} /> */}
       <h1 className="text-foreground text-3xl leading-none font-bold tracking-tight">
         {`Searching for "${query}"`}
       </h1>

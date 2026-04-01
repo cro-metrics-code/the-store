@@ -27,18 +27,18 @@ const nextConfig: NextConfig = {
     mdxRs: true,
   },
   // Add PostHog rewrites
-  async rewrites() {
-    return [
-      {
-        source: '/ph-collect/static/:path*',
-        destination: 'https://us-assets.i.posthog.com/static/:path*',
-      },
-      {
-        source: '/ph-collect/:path*',
-        destination: 'https://us.i.posthog.com/:path*',
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/ph-collect/static/:path*',
+  //       destination: 'https://us-assets.i.posthog.com/static/:path*',
+  //     },
+  //     {
+  //       source: '/ph-collect/:path*',
+  //       destination: 'https://us.i.posthog.com/:path*',
+  //     },
+  //   ];
+  // },
   // Required to support PostHog trailing slash API requests
   skipTrailingSlashRedirect: true,
 };
