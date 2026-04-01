@@ -5,7 +5,7 @@ import { PHProvider } from '@/lib/posthog-provider';
 import { Toaster } from '@/ui/shadcn/sonner';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Metadata } from 'next';
+import { type Metadata } from 'next';
 import Script from 'next/script';
 import type { ReactNode } from 'react';
 
