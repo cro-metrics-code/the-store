@@ -6,6 +6,7 @@ import { Toaster } from '@/ui/shadcn/sonner';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import type { ReactNode } from 'react';
 
 export const generateMetadata = async (): Promise<Metadata> => ({
@@ -23,6 +24,10 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
 
   return (
     <html lang="en" className="h-full antialiased">
+      <Script
+        src="https://cdn.optimizely.com/js/5676359352057856.js"
+        strategy="beforeInteractive"
+      />
       <PHProvider bootstrapData={bootstrapData}>
         <body className="flex min-h-full flex-col">
           <div
